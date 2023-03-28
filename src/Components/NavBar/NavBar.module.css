@@ -1,0 +1,62 @@
+:root {
+  --white: #fff;
+  --bg: #dbebfa;
+  --pink: #9b29b7;
+  --blue-dark: #4763ef;
+  --font: "Roboto Mono", sans-serif;
+}
+.navBar {
+  background-color: #6ac1b8;
+  position: sticky;
+  top: -7rem;
+  z-index: 1;
+  height: 10rem;
+}
+
+.navBar img {
+  border-radius: 50px;
+  /* justify-content: space-between; */
+}
+
+.underline {
+  color: var(--white);
+  font-size: 1.1rem;
+  display: inline-block;
+  position: relative;
+}
+.underline:hover {
+  transform: translateY(-3px);
+  text-shadow: 3px 3px 3px black;
+  transition: 300ms;
+}
+
+.underline:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 4px;
+  bottom: 0;
+  left: 0;
+  background-color: #07588a;
+  transform-origin: bottom right;
+  transition: transform 0.4s ease-out;
+}
+
+.underline:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.underline p {
+  color: #6ac1b8;
+}
+
+.underline p:hover {
+  transform: translateY(-3px);
+  text-shadow: 2px 2px 2px rgb(105, 103, 103);
+  transition: 300ms;
+}
+
+.login {
+  background-color: red;
+}
