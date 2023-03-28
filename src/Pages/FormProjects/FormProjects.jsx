@@ -22,7 +22,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 export default function FormProjects() {
   const navigate = useNavigate();
 
-  const[img, setImg] = useState("");
+  const[img, setImg] = useState();
 
   var myWidget = window.cloudinary.createUploadWidget(
     {
@@ -56,7 +56,7 @@ export default function FormProjects() {
   const [err, SetErr] = useState("");
 
   const Submit = (data) => {
-    //if (LogInStatus){
+      if(!img) return ("no seas perezosos pon una imagen")
       data.image=img;
       dispatch(postProject(data))
       console.log(data);
@@ -107,8 +107,20 @@ export default function FormProjects() {
                 placeholder="Share your project's address"
                 {...register("location")}
               />
-              {!errors.name ? null : (
+              {!errors.location? null : (
                 <FormErrorMessage>{errors.location?.message}</FormErrorMessage>
+              )}
+            </FormControl>
+
+            <FormControl isInvalid={errors.cost ? true : false}>
+              <FormLabel>cost</FormLabel>
+              <Input
+                type="text"
+                placeholder="Share your project's address"
+                {...register("cost")}
+              />
+              {!errors.cost ? null : (
+                <FormErrorMessage>{errors.cost?.message}</FormErrorMessage>
               )}
             </FormControl>
 
@@ -126,12 +138,15 @@ export default function FormProjects() {
                 placeholder="Share your story"
                 {...register("description")}
               />
-              {!errors.name ? null : (
+              {!errors.description ? null : (
                 <FormErrorMessage>
                   {errors.description?.message}
                 </FormErrorMessage>
               )}
             </FormControl>
+
+            {img&&<img src={img} alt="project" width="200px" height="200px"  objectFit= "cover"/>}
+            <Button onClick={widgetOpen}>Imagen</Button>
 
             <Button type="submit" colorScheme="blue">
               {" "}
@@ -139,7 +154,6 @@ export default function FormProjects() {
             </Button>
           </VStack>
         </form>
-        <button onClick={widgetOpen}>Imagen</button>
         {err ? <span>debes loguearte</span> : null}
       </Container>
     );
@@ -147,5 +161,3 @@ export default function FormProjects() {
    return (<Navigate to="/login" />);
   }
 }
-
-//Solo el achivo index de Pages recibe este export
