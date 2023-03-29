@@ -11,7 +11,7 @@ import theme from "./theme";
 import "./i18n";
 import axios from "axios";
 
-/* axios.defaults.baseURL = `http://localhost:3001` */
+// axios.defaults.baseURL = `http://localhost:3001`
 axios.defaults.baseURL = `https://pf-api-production.up.railway.app/`
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

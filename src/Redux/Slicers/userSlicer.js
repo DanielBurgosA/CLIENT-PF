@@ -22,7 +22,7 @@ const initialState = {
 export const postUser = createAsyncThunk(
   "user/postUser",
   async (info) => {
-    const res = await axios.post("/user", info);
+    const res = await axios.post("/users", info);
     return res.data;
   }
 );
