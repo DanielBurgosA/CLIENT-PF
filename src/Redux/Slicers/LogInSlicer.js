@@ -19,6 +19,18 @@ export const userLogIn = createAsyncThunk(
         }
     });
 
+// export const userLogInGoogle = createAsyncThunk(
+//     "LogInGoogle/getGoogleLogIn",
+//     async (data) => {
+//         try {
+//             const res = await axios.get(`/auth/google`);
+//             console.log(res)
+//             return res.data;
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     });
+
 
 const logInSlicer = createSlice({
     name: "login",
@@ -41,7 +53,7 @@ const logInSlicer = createSlice({
             .addCase(userLogIn.fulfilled, (state, action) => {
                 if (action.payload.success === true ){
                     state.status = true;
-                    window.location.href ="http://localhost:3001/login"
+                    window.location.href="https://pf-api-production.up.railway.app/login";
                 }else {
                     state.status = false
                 }
