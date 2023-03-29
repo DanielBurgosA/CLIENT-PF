@@ -41,7 +41,7 @@ const logInSlicer = createSlice({
             .addCase(userLogIn.fulfilled, (state, action) => {
                 if (action.payload.success === true ){
                     state.status = true;
-                    window.location.href ="pf-api-production.up.railway.app/login"
+                    window.location.href ="http://pf-api-production.up.railway.app/login"
                 }else {
                     state.status = false
                 }
