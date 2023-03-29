@@ -19,17 +19,17 @@ export const userLogIn = createAsyncThunk(
         }
     });
 
-export const userLogInGoogle = createAsyncThunk(
-    "LogInGoogle/getGoogleLogIn",
-    async (data) => {
-        try {
-            const res = await axios.get(`/auth/google`);
-            console.log(res)
-            return res.data;
-        } catch (error) {
-            console.log(error)
-        }
-    });
+// export const userLogInGoogle = createAsyncThunk(
+//     "LogInGoogle/getGoogleLogIn",
+//     async (data) => {
+//         try {
+//             const res = await axios.get(`/auth/google`);
+//             console.log(res)
+//             return res.data;
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     });
 
 
 const logInSlicer = createSlice({
