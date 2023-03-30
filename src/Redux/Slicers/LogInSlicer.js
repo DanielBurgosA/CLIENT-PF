@@ -11,7 +11,7 @@ export const userLogIn = createAsyncThunk(
     "LogIn/postUserLogIn",
     async (data) => {
         try {
-            const response = await fetch(`https://pf-api-production.up.railway.app/login`, {credentials:"include", method:"POST", headers:{"Content-Type": "application/json"}, body:JSON.stringify(data) });
+            const response = await fetch(`https://pf-api-production.up.railway.app/login`, {mode:"cors", credentials:"include", method:"POST", headers:{"Content-Type": "application/json"}, body:JSON.stringify(data) });
             const verify = await response.json();
             console.log(verify);
             return verify;
