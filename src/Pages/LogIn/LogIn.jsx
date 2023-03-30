@@ -31,6 +31,7 @@ export default function LogIn() {
     const navigate = useNavigate();
 
     const LogInStatus = useSelector (state => state.login.status)
+    console.log("esto es el log in",LogInStatus)
 
     const dispatch = useDispatch();
     

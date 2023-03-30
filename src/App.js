@@ -12,15 +12,17 @@ import {
   Projects,
   Validation,
   UserForm,
+  DonationHistory,
+  UserProjects,
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 import { verifyStatus } from "./Redux/Slicers/LogInSlicer";
-
 
 function App() {
   const location = useLocation();
@@ -46,6 +48,7 @@ function App() {
           {location.pathname !== '/pagos' || location.pathname !== '/login' && <NavBar/>}
       </div> */}
       <NavBar />
+      <Dashboard />
       <Routes>
         <Route exact path="/" element={<Navigate to="/home" />} />
         <Route exact path="/home" element={<Home />} />
@@ -58,6 +61,9 @@ function App() {
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
+        <Route exact path="/donationhistory" element={<DonationHistory />} />
+        <Route exact path="/myprojects" element={<UserProjects />} />
+        
       </Routes>
       {location.pathname.indexOf("projects") !== 1 && <LargeWithNewsletter />}
     </div>
