@@ -4,7 +4,7 @@ import Cookie from "js-cookie";
 
 
 const initialState = {
-    status: Cookie.get("success")? true: false
+    status: Cookie.get("success") ? true : false
 }
 
 export const userLogIn = createAsyncThunk(
@@ -19,6 +19,31 @@ export const userLogIn = createAsyncThunk(
         }
     });
 
+// export const userLogInGoogle = createAsyncThunk(
+//     "LogInGoogle/getGoogleLogIn",
+//     async () => {
+//         try {
+//             const res = await axios.get("/auth/google", {headers: {
+//                 "Access-Control-Allow-Origin": true
+//               }});
+            
+//             window.location.href = "http://localhost:3001/login"
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     });
+
+// export const tokenExistence = createAsyncThunk(
+//     "LogIn/getUserLogIn",
+//     async () => {
+//         try {
+//             const verify = await axios.get(`/login/google`);
+//             console.log(verify)
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     });
+
 
 const logInSlicer = createSlice({
     name: "login",
@@ -32,17 +57,17 @@ const logInSlicer = createSlice({
             } else {
                 state.status = false;
             }
-            
+
         },
 
     },
     extraReducers(builder) {
         builder
             .addCase(userLogIn.fulfilled, (state, action) => {
-                if (action.payload.success === true ){
+                if (action.payload.success === true) {
                     state.status = true;
-                    window.location.href ="http://localhost:3001/login"
-                }else {
+                    window.location.href = "http://localhost:3001/login"
+                } else {
                     state.status = false
                 }
             })

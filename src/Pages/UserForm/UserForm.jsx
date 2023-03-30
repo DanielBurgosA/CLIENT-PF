@@ -31,7 +31,6 @@ export default function UserForm() {
   });
 
   const Submit = (data) => {
-    console.log(data)
     dispatch(postUser(data));
     navigate("/login");
   }
@@ -41,10 +40,16 @@ export default function UserForm() {
       <Heading>Create an account</Heading>
       <form onSubmit={handleSubmit(Submit)}>
         <VStack spacing="24px">
-          <FormControl isInvalid={errors.name ? true : false}>
+          <FormControl isInvalid={errors.user_name ? true : false}>
             <FormLabel>User name</FormLabel>
-            <Input type="text" placeholder="Enter the user name" {...register('name')} />
-            {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
+            <Input type="text" placeholder="Enter the user name" {...register('user_name')} />
+            {!errors.user_name ? null : <FormErrorMessage>{errors.user_name?.message}</FormErrorMessage>}
+          </FormControl>
+
+          <FormControl isInvalid={errors.user_email ? true : false}>
+            <FormLabel>User email</FormLabel>
+            <Input type="text" placeholder="Enter the user name" {...register('user_email')} />
+            {!errors.user_email ? null : <FormErrorMessage>{errors.user_email?.message}</FormErrorMessage>}
           </FormControl>
 
           <FormControl isInvalid={errors.password ? true : false}>

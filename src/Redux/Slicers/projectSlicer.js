@@ -38,6 +38,7 @@ export const getProjectByName = createAsyncThunk(
 
 export const getProject = createAsyncThunk("project/getProject", async () => {
   const res = await axios.get(`/projects`);
+  console.log(res)
   return res.data;
 });
 

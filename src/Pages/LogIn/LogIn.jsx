@@ -43,7 +43,6 @@ export default function LogIn() {
 
     const Submit = (data) => {
         dispatch(userLogIn(data));
-        console.log(LogInStatus)
     }
 
     useEffect(() => {
@@ -56,31 +55,33 @@ export default function LogIn() {
     
 
     return (
-        <Container mt= "100px">
-            <Heading>Log in</Heading>
-            <form onSubmit={handleSubmit(Submit)}>
-                <VStack spacing="24px">
-                    <FormControl isInvalid={errors.name ? true : false}>
-                        <FormLabel>User name</FormLabel>
-                        <Input type="text" placeholder="Enter the user name" {...register('name')} />
-                        {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
-                    </FormControl>
+        <a href="http://localhost:3001/login">log in</a>
+        // <Container mt= "100px">
+        //     <Heading>Log in</Heading>
+        //     <form onSubmit={handleSubmit(Submit)}>
+        //         <VStack spacing="24px">
+        //             <FormControl isInvalid={errors.user_email ? true : false}>
+        //                 <FormLabel>User email</FormLabel>
+        //                 <Input type="text" placeholder="Enter the user email" {...register('user_email')} />
+        //                 {!errors.user_email ? null : <FormErrorMessage>{errors.user_email?.message}</FormErrorMessage>}
+        //             </FormControl>
 
-                    <FormControl isInvalid={errors.password ? true : false}>
-                        <FormLabel>Password</FormLabel>
-                        <Input type='text' placeholder="Enter your password" {...register('password')} />
-                        {!errors.password ? null : <FormErrorMessage>{errors.password?.message}</FormErrorMessage>}
-                    </FormControl>
-                    <Flex w="100%">
-                        <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
-                        <Spacer></Spacer>
-                        <Button type="submit" colorScheme="blue"> send </Button>
-                    </Flex>
-                    <SignUp/>
-                </VStack>
+        //             <FormControl isInvalid={errors.password ? true : false}>
+        //                 <FormLabel>Password</FormLabel>
+        //                 <Input type='text' placeholder="Enter your password" {...register('password')} />
+        //                 {!errors.password ? null : <FormErrorMessage>{errors.password?.message}</FormErrorMessage>}
+        //             </FormControl>
+        //             <Flex w="100%">
+        //                 <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
+        //                 <Spacer></Spacer>
+        //                 <Link to={"/change/password"} style={{color:"blue"}}>Forget your password?</Link>
+        //             </Flex>
+        //             <Button type="submit" colorScheme="blue"> send </Button>
+        //             <SignUp/>
+        //         </VStack>
 
-            </form>
-        </Container>
+        //     </form>
+        // </Container>
     )
 }
 
