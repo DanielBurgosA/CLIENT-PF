@@ -14,13 +14,13 @@ import {
   UserForm,
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 import { verifyStatus } from "./Redux/Slicers/LogInSlicer";
-
 
 function App() {
   const location = useLocation();
@@ -46,6 +46,7 @@ function App() {
           {location.pathname !== '/pagos' || location.pathname !== '/login' && <NavBar/>}
       </div> */}
       <NavBar />
+      <Dashboard />
       <Routes>
         <Route exact path="/" element={<Navigate to="/home" />} />
         <Route exact path="/home" element={<Home />} />
