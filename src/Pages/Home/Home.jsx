@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { verifyStatus } from "../../Redux/Slicers/LogInSlicer";
 import Chatbot from "../../Components/chatbot/chatbot";
 import CountAnimation from "../../Components/CountAnimation/CountAnimation";
+import Dashboard from "../../Components/Dashboard/Dashboard";
 export default function Home() {
   const LogInStatus = useSelector((state) => state.login.status);
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function Home() {
       <ImageSlider slides={SlideData} />
       <CountAnimation />
       <Chatbot />
+      {/* <Dashboard /> */}
     </>
   );
 }
