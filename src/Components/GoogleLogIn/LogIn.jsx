@@ -1,8 +1,8 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
 import { ImGoogle } from "react-icons/im";
-import { useDispatch } from  "react-redux";
-import { userLogInGoogle } from "../../Redux/Slicers/LogInSlicer";
+// import { useDispatch } from  "react-redux";
+// import { userLogInGoogle } from "../../Redux/Slicers/LogInSlicer";
 
 export default function SignUp() {
 

@@ -11,9 +11,10 @@ export const userLogIn = createAsyncThunk(
     "LogIn/postUserLogIn",
     async (data) => {
         try {
-            const verify = await axios.post(`/login`, data);
-            console.log(verify.data)
-            return verify.data;
+            const response = await fetch(`/login`, {credentials:"include", method:"POST", headers:{"Content-Type": "application/json"}, body:JSON.stringify(data) });
+            const verify = await response.json();
+            console.log(verify);
+            return verify;
         } catch (error) {
             console.log(error)
         }
@@ -48,17 +49,17 @@ const logInSlicer = createSlice({
         },
 
     },
-    extraReducers(builder) {
-        builder
-            .addCase(userLogIn.fulfilled, (state, action) => {
-                if (action.payload.success === true ){
-                    state.status = true;
-                    window.location.href="https://pf-api-production.up.railway.app/login";
-                }else {
-                    state.status = false
-                }
-            })
-    }
+    // extraReducers(builder) {
+    //     builder
+    //         .addCase(userLogIn.fulfilled, (state, action) => {
+    //             if (action.payload.success === true ){
+    //                 state.status = true;
+    //                 window.location.href="https://pf-api-production.up.railway.app/login";
+    //             }else {
+    //                 state.status = false
+    //             }
+    //         })
+    // }
 
 
 })
