@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
-import { verifyStatus } from "./Redux/Slicers/LogInSlicer";
+import { userGoogleLogin } from "./Redux/Slicers/LogInOutSlicer";
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
   
   useEffect(()=>{
     if (!LogInStatus){
-        dispatch(verifyStatus());
+        dispatch(userGoogleLogin());
     }
     
   }, [dispatch, LogInStatus]);
