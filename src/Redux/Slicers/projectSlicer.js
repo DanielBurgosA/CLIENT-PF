@@ -46,7 +46,7 @@ export const postProject = createAsyncThunk(
   async (info) => {
     
     axios.interceptors.request.use(req => {
-      log(localStorage.getItem("value"))
+      conole.log(localStorage.getItem("value"))
       const token = localStorage.getItem("value")
       req.headers.authorization =`Bearer ${token}`;
       return req;
