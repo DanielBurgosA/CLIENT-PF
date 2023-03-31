@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 import { userGoogleLogin } from "./Redux/Slicers/LogInOutSlicer";
+import  ForgotPassword  from "./Pages/forgotPassword/ForgotPAssword";
+import  ResetPassword  from "./Pages/ResetPAssword/ResetPassword";
 
 
 function App() {
@@ -58,6 +60,8 @@ function App() {
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
+        <Route exact path="/forgotPassword" element={<ForgotPassword/>}></Route>
+        <Route path = "/reset" element={< ResetPassword/>}/>
       </Routes>
       {location.pathname.indexOf("projects") !== 1 && <LargeWithNewsletter />}
     </div>

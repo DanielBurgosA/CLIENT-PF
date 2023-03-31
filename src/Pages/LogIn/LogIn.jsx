@@ -73,6 +73,7 @@ export default function LogIn() {
                     </FormControl>
                     <Flex w="100%">
                         <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
+                        <Link to={"/forgotPassword"} style={{color:"blue"}}>Forgot password?</Link> 
                         <Spacer></Spacer>
                         <Button type="submit" colorScheme="blue"> send </Button>
                     </Flex>

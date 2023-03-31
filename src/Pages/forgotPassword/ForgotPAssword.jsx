@@ -51,9 +51,9 @@ export default function ForgotPassword() {
                         {!errors.user_email ? null : <FormErrorMessage>{errors.user_email?.message}</FormErrorMessage>}
                     </FormControl>
                     
-                    <SignUp/>
+            
                 </VStack>
-
+            <Button type="submit">send</Button>
             </form>
             {result? <span>{result}</span>: null}
         </Container>

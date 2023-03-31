@@ -17,9 +17,10 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { forgotPasswordSchema } from "./errors";
+import { ResetPasswordSchema } from "./errors";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
 
 
 export default function ResetPassword (){
@@ -27,6 +28,10 @@ export default function ResetPassword (){
     const {token} = useParams(); 
     console.log(token)
     const [result, setResult] = useState("");
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(ResetPasswordSchema)
+    })
 
     const authHeader = { Authorization: `Bearer ${token}` };
 
@@ -53,7 +58,7 @@ export default function ResetPassword (){
                         {!errors.user_password ? null : <FormErrorMessage>{errors.user_password?.message}</FormErrorMessage>}
                     </FormControl>
                     
-                    <SignUp/>
+                  
                 </VStack>
 
             </form>
