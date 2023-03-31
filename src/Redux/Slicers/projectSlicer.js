@@ -37,7 +37,7 @@ export const getProjectByName = createAsyncThunk(
 );
 
 export const getProject = createAsyncThunk("project/getProject", async () => {
-  const res = await axios.get(`/projects`);
+  const res = await axios.get(`/userprojects`);
   return res.data;
 });
 
