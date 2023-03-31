@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUsersSchema } from "./LoginErrors";
-import { userLogIn } from "../../Redux/Slicers/LogInSlicer"; 
+import { userLogIn } from "../../Redux/Slicers/LogInOutSlicer"; 
 import { useDispatch, useSelector } from "react-redux";
 //import { confgCookie } from "../../Redux/Slicers/LogInSlicer";
 import { useEffect, useState } from "react";
@@ -43,7 +43,7 @@ export default function LogIn() {
 
     const Submit = (data) => {
         dispatch(userLogIn(data));
-        console.log(LogInStatus)
+        console.log(data)
     }
 
     useEffect(() => {
@@ -60,19 +60,20 @@ export default function LogIn() {
             <Heading>Log in</Heading>
             <form onSubmit={handleSubmit(Submit)}>
                 <VStack spacing="24px">
-                    <FormControl isInvalid={errors.name ? true : false}>
-                        <FormLabel>User name</FormLabel>
-                        <Input type="text" placeholder="Enter the user name" {...register('name')} />
-                        {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
+                    <FormControl isInvalid={errors.user_email ? true : false}>
+                        <FormLabel>User email</FormLabel>
+                        <Input type="text" placeholder="Enter the user user_email" {...register('user_email')} />
+                        {!errors.user_email ? null : <FormErrorMessage>{errors.user_email?.message}</FormErrorMessage>}
                     </FormControl>
 
-                    <FormControl isInvalid={errors.password ? true : false}>
+                    <FormControl isInvalid={errors.user_password ? true : false}>
                         <FormLabel>Password</FormLabel>
-                        <Input type='text' placeholder="Enter your password" {...register('password')} />
-                        {!errors.password ? null : <FormErrorMessage>{errors.password?.message}</FormErrorMessage>}
+                        <Input type='text' placeholder="Enter your password" {...register('user_password')} />
+                        {!errors.user_password ? null : <FormErrorMessage>{errors.user_password?.message}</FormErrorMessage>}
                     </FormControl>
                     <Flex w="100%">
                         <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
+                        <Link to={"/forgotPassword"} style={{color:"blue"}}>Forgot password?</Link> 
                         <Spacer></Spacer>
                         <Button type="submit" colorScheme="blue"> send </Button>
                     </Flex>

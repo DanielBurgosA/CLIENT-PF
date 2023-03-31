@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import projectReducer from '../Slicers/projectSlicer';
 import usersReducer from '../Slicers/userSlicer';
-import logInReducer from '../Slicers/LogInSlicer';
+import logInReducer from '../Slicers/LogInOutSlicer';
 import paymentSlicer from '../Slicers/paymentSlicer';
 
 export const Store = configureStore({
