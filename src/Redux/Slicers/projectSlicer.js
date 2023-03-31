@@ -46,7 +46,7 @@ export const postProject = createAsyncThunk(
   async (info) => {
     
     axios.interceptors.request.use(req => {
-      const token = Cookie.get("value")
+      const token = localStorage.getItem("value")
       req.headers.authorization =`Bearer ${token}`;
       return req;
     });
