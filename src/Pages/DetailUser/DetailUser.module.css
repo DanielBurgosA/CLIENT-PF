@@ -1,0 +1,14 @@
+.Prov{
+    display: flex;
+    width: 100%;
+    height: 500px;
+    font-size: larger;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+p{
+    display: flex;
+} 

@@ -1,0 +1,6 @@
+.input {
+  background-color: #bfe9db;
+}
+.input::placeholder {
+  color: black;
+}
