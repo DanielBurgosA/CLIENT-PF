@@ -61,7 +61,7 @@ function App() {
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
         <Route exact path="/forgotPassword" element={<ForgotPassword/>}></Route>
-        <Route path = "/reset" element={< ResetPassword/>}/>
+        <Route exact path = "/reset" element={< ResetPassword/>}/>
       </Routes>
       {location.pathname.indexOf("projects") !== 1 && <LargeWithNewsletter />}
     </div>

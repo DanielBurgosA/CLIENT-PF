@@ -51,6 +51,7 @@ const logInSlicer = createSlice({
 
             localStorage.removeItem("value");
             localStorage.removeItem("origin");
+            localStorage.removeItem("rol");
             state.status = false;
         }
     },
@@ -60,6 +61,8 @@ const logInSlicer = createSlice({
                 if (action.payload.success === true) {
                     localStorage.setItem("value", action.payload.token);
                     localStorage.setItem("origin", action.payload.origin);
+                    action.payload.rol&&localStorage.setItem("rol", action.payload.rol);
+                    console.log(action.payload.rol);
                     state.status = true;
                 }else{
                     state.status = false;

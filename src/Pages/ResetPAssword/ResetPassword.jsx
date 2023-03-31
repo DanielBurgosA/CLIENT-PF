@@ -18,14 +18,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { ResetPasswordSchema } from "./errors";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 
 
 export default function ResetPassword (){
-
-    const {token} = useParams(); 
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+    const token = queryParams.get('token')
+; 
     console.log(token)
     const [result, setResult] = useState("");
 
@@ -37,7 +39,7 @@ export default function ResetPassword (){
 
     const submit = async (data) => {
         try {
-           const res = await axios.put("/reset", {headers: authHeader}); 
+           const res = await axios.put("/reset", data); 
            setResult(res.data);
         } catch (error) {
             console.log(error);
@@ -54,13 +56,12 @@ export default function ResetPassword (){
 
                     <FormControl isInvalid={errors.user_password ? true : false}>
                         <FormLabel>Enter the new password</FormLabel>
+                        <Input type='text' placeholder="Enter your email" {...register('user_email')} />
                         <Input type='text' placeholder="Enter your password" {...register('user_password')} />
                         {!errors.user_password ? null : <FormErrorMessage>{errors.user_password?.message}</FormErrorMessage>}
                     </FormControl>
-                    
-                  
                 </VStack>
-
+                <Button type="submit">send</Button>
             </form>
             {result? <span>{result}</span>: null}
         </Container>
