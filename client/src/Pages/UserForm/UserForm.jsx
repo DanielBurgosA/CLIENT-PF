@@ -35,27 +35,39 @@ export default function UserForm() {
     dispatch(postUser(data));
     navigate("/login");
   }
-  
+
   return (
     <Container mt="100px">
       <Heading>Create an account</Heading>
       <form onSubmit={handleSubmit(Submit)}>
         <VStack spacing="24px">
-          <FormControl isInvalid={errors.name ? true : false}>
+          <FormControl isInvalid={errors.user_name ? true : false}>
             <FormLabel>User name</FormLabel>
-            <Input type="text" placeholder="Enter the user name" {...register('name')} />
-            {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
+            <Input type="text" placeholder="Enter the user name" {...register('user_name')} />
+            {!errors.user_name ? null : <FormErrorMessage>{errors.user_name?.message}</FormErrorMessage>}
           </FormControl>
 
-          <FormControl isInvalid={errors.password ? true : false}>
+          {/* <FormControl isInvalid={error.user_lastname? true : false}>
+            <FormLabel>User user_lastname</FormLabel>
+            <Input type="text" placeholder="Enter the user lastname" {...register('user_lastname')} />
+            {!errors.user_lastname ? null : <FormErrorMessage>{errors.user_lastname?.message}</FormErrorMessage>}
+          </FormControl> */}
+
+          <FormControl isInvalid={errors.user_email ? true : false}>
+            <FormLabel>User email</FormLabel>
+            <Input type="text" placeholder="Enter the user email" {...register('user_email')} />
+            {!errors.user_email ? null : <FormErrorMessage>{errors.user_email?.message}</FormErrorMessage>}
+          </FormControl>
+
+          <FormControl isInvalid={errors.user_password ? true : false}>
             <FormLabel>Password</FormLabel>
             <Input
               type="text"
               placeholder="Enter your password"
-              {...register("password")}
+              {...register("user_password")}
             />
-            {!errors.password ? null : (
-              <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+            {!errors.user_password ? null : (
+              <FormErrorMessage>{errors.user_password?.message}</FormErrorMessage>
             )}
           </FormControl>
 
