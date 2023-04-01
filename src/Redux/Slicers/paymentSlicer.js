@@ -6,10 +6,10 @@ const initialState = {
 };
 
 export const linkPaymentPlatform = createAsyncThunk(
-  "paymentLink/linkPaymentPlatform",
-  async (form) => {
-    const res = await axios.post(`/create-payment`, form);
-   
+  "project/linkPaymentPlatform",
+  async () => {
+    const res = await axios.post(`/create-payment`);
+    console.log("esto es le post",res.data)
     return res.data;
   }
 );
