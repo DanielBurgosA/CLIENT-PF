@@ -17,6 +17,7 @@ export default function Pagos() {
 
   const handleButtonClick = () => {
       dispatch(linkPaymentPlatform());
+      console.log("salio bien")
     };
 
   return (
