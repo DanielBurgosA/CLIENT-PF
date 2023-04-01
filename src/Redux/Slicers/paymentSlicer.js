@@ -6,10 +6,10 @@ const initialState = {
 };
 
 export const linkPaymentPlatform = createAsyncThunk(
-  "project/linkPaymentPlatform",
-  async () => {
-    const res = await axios.post(`/create-payment`);
-    console.log("esto es le post",res.data)
+  "paymentLink/linkPaymentPlatform",
+  async (form) => {
+    const res = await axios.post(`/create-payment`, form);
+    
     return res.data;
   }
 );
@@ -24,7 +24,6 @@ const paymentSlicer = createSlice({
     },
     extraReducers: (builder) => {
       builder.addCase(linkPaymentPlatform.fulfilled, (state, action) => {
-        console.log("esto es action", action.payload.data.links[1].href)
         state.payLink = action.payload.data.links[1].href;
       });
     },
