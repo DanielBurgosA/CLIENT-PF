@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { project } from "../../Utils/seed";
+//import { project } from "../../Utils/seed";
 import { instance } from "../../Utils/AttachTokenToReq";
 import Cookie from "js-cookie";
 
 const initialState = {
-  AllProjects: [...project],
+  AllProjects: [/* ...project */],
   postStatus: "",
   error: null,
   projectId: {},
   projectByName: [],
-  ProjectsToDisplay: [...project],
+  ProjectsToDisplay: [/* ...project */],
   filterLocation: [],
   filterState: [],
   projectsSearch: "",
