@@ -8,12 +8,17 @@ const initialState = {
 export const postComment = createAsyncThunk(
   "comment/postComment",
   async (body) => {
+    axios.interceptors.request.use((req) => {
+      const token = localStorage.getItem("value");
+      req.headers.authorization = `Bearer ${token}`;
+      return req;
+    });
+
     try {
       const comment = await axios.post("/comment", body);
-      console.log("post comment", comment.data);
       return comment.data;
     } catch (error) {
-      console.log('error :>> ', error.message);
+      throw error;
     }
   }
 );
@@ -23,11 +28,10 @@ const commentsSlicer = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder
-    .addCase(postComment.fulfilled, (state) => {
+    builder.addCase(postComment.fulfilled, (state) => {
       state.createComment = "Succeeded";
-    })
-  }
+    });
+  },
 });
 
 export default commentsSlicer.reducer;

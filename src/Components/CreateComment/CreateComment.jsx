@@ -10,49 +10,53 @@ import {
 } from "@chakra-ui/react";
 import Swal from 'sweetalert2';
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function AddComment() {
-
-  const [newComment, setNewComment] = useState()
-  
   const dispatch = useDispatch();
 
-  const commentprueba = useSelector(state => state.comment)
-  console.log("...>", commentprueba)
+  const { id } = useParams();
+
+  const [newComment, setNewComment] = useState({
+    comment: "",
+    projectId: id,
+  });
 
   const LogInStatus = useSelector((state) => state.login.status);
-  console.log("usuario", LogInStatus);
 
-  const handleSubmit = (info) => {
-    dispatch(postComment(info))
-    console.log('info :>> ', info);
-    Swal.fire(
-      'Good job!',
-      'You added a comment!',
-      'success'
-    )
-  }
+  const Submit = (e) => {
+    dispatch(postComment(newComment));
+    setNewComment({
+      comment: "",
+    })
+    Swal.fire("Good job!", "You added a comment!", "success");
+  };
+
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const handleChange = (e) => {
-    console.log('e.target, e.target.value :>> ', e.target.name);
-  }
+    setNewComment({ ...newComment, comment: e.target.value });
+  };
 
   return (
     <div>
       <Container mt="100px" mb="100px">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(Submit)}>
           <VStack>
             <FormControl>
               <FormLabel>Comment</FormLabel>
               <Textarea
-                name="comment"
+                value={newComment.comment}
                 onChange={handleChange}
                 resize="vertical"
                 h="100px"
                 placeholder="Add a comment..."
               />
             </FormControl>
-
             <Button type="submit" colorScheme="blue">
               {" "}
               Post{" "}
