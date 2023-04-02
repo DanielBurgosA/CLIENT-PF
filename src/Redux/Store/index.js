@@ -3,7 +3,7 @@ import projectReducer from '../Slicers/projectSlicer';
 import usersReducer from '../Slicers/userSlicer';
 import logInReducer from '../Slicers/LogInOutSlicer';
 import paymentSlicer from '../Slicers/paymentSlicer';
-import commentsSlicer from '../Slicers/commentsSlicer';
+import commentsReducer from '../Slicers/commentsSlicer';
 
 export const Store = configureStore({
     reducer: {
@@ -11,7 +11,7 @@ export const Store = configureStore({
         user: usersReducer,
         login: logInReducer,
         paymentLink: paymentSlicer,
-        comment: commentsSlicer
+        comment: commentsReducer
     }
 });
 
