@@ -30,6 +30,12 @@ export default function NavBar() {
 
               {LogInStatus && <LogOutButton className={style.underline} />}
 
+              <a href="/profile">
+                <Button colorScheme="teal" variant="solid" marginRight="1rem">
+                  Profile
+                </Button>
+              </a>
+
               {!LogInStatus && (
                 <a href="/create-user">
                   <Button
@@ -49,7 +55,6 @@ export default function NavBar() {
                   </Button>
                 </a>
               )}
-
               <ToggleColorMode />
             </Flex>
           </GridItem>
