@@ -20,7 +20,6 @@ export default function DetailProject() {
 
   return (
     <Box maxH='1.5'>
-      {Object.keys(projectById).length > 0 ? (
         <Box textAlign='justify'>
           <VStack spacing={3}>
             <Heading as='b' fontSize='4rem' margin='1rem 3rem'>{projectById.name.toUpperCase()}</Heading>
@@ -36,9 +35,6 @@ export default function DetailProject() {
             </Card>
           </VStack>
         </Box>
-      ) : (
-        <Text>Loading..</Text>
-      )}
       <Box>
         <Link to='/projects'>
             <Button margin='1rem 3rem' _hover={{background:'#C9EEFF'}}>Back</Button>

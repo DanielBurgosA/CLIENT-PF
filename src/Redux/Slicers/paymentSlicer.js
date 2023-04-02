@@ -6,11 +6,21 @@ const initialState = {
 };
 
 export const linkPaymentPlatform = createAsyncThunk(
-  "project/linkPaymentPlatform",
-  async () => {
-    const res = await axios.post(`/create-payment`);
-    console.log("esto es le post",res.data)
-    return res.data;
+  "paymentLink/linkPaymentPlatform",
+  async (form) => {
+    axios.interceptors.request.use(req => {
+      
+      const token = localStorage.getItem("value")
+      req.headers.authorization =`Bearer ${token}`;
+      return req;
+    });
+    try {
+      const res = await axios.post(`/create-payment`, form);
+      return res.data;
+    } catch (error) {
+      console.log(error.message)
+    }
+    
   }
 );
 
@@ -24,7 +34,6 @@ const paymentSlicer = createSlice({
     },
     extraReducers: (builder) => {
       builder.addCase(linkPaymentPlatform.fulfilled, (state, action) => {
-        console.log("esto es action", action.payload.data.links[1].href)
         state.payLink = action.payload.data.links[1].href;
       });
     },
