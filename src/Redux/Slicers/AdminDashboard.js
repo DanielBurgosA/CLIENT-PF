@@ -16,7 +16,7 @@ const initialState = {
 export const getProject = createAsyncThunk(
   "adminDashboard/getProject",
   async () => {
-    const res = await axios.get(`/userprojects`);
+    const res = await axios.get(`/projects`);
     return res.data;
   }
 );

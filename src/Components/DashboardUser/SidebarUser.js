@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import style from "./Sidebar.module.css";
 import { Button } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../Redux/Slicers/UserDashboard";
 export default function SidebarUser() {
+  const usuario = useSelector((state) => state.dashBoardUser.user);
+  console.log("usuario", usuario);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
   return (
     <div className={style.sidebar}>
       <ul>

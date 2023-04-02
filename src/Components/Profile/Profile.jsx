@@ -6,12 +6,14 @@ import SidebarUser from "../DashboardUser/SidebarUser";
 import UserInfo from "../../Pages/DashboardUser/UserInfo/UserInfo";
 import AdminInfo from "../../Pages/DashboardAdmin/AdminInfo/AdminInfo";
 import Donations from "../../Pages/DashboardAdmin/Donations/Donations";
-import Projects from "../../Pages/DashboardAdmin/Projects/Projects";
 import SidebarAdmin from "../DashboardAdmin/SidebarAdmin";
+import ProjectsApproved from "../../Pages/DashboardAdmin/Projects/ProjectsApproved";
+import ProjectsPending from "../../Pages/DashboardAdmin/Projects/ProjectsPending";
+import ProjectsCompleted from "../../Pages/DashboardAdmin/Projects/ProjectsCompleted";
 // import style from "./Profile.module.css";
 
 export default function Profile() {
-  const rol = localStorage.getItem("rol")
+  const rol = localStorage.getItem("rol");
   return (
     <>
       <Grid
@@ -22,28 +24,38 @@ export default function Profile() {
         color="blackAlpha.700"
         fontWeight="bold"
       >
-        {/*  Dashboard User */}
-
-        {/* <GridItem pl="2" bg="blue.100" area={"nav"} mr="3px">
-          <SidebarUser />
-        </GridItem>
-        <GridItem pl="2" bg="blue.50" area={"main"}>
-          <Routes>
-            <Route exact path="projectsUser" element={<ProjectsUser />} />
-            <Route exact path="donationHistory" element={<DonationUser />} />
-            <Route exact path="userInfo" element={<UserInfo />} />
-          </Routes>
-        </GridItem> */}
-        {/*  Dashboard Admin */}
+        {/* Primera manera de condicionar */}
         <GridItem pl="2" bg="blue.100" area={"nav"} mr="3px">
-          <SidebarAdmin />
+          {rol ? <SidebarAdmin /> : <SidebarUser />}
         </GridItem>
         <GridItem pl="2" bg="blue.50" area={"main"}>
-          <Routes>
-            <Route exact path="projectsAdmin" element={<Projects />} />
-            <Route exact path="donationsAdmin" element={<Donations />} />
-            <Route exact path="InfoAdmin" element={<AdminInfo />} />
-          </Routes>
+          {rol ? (
+            <Routes>
+              <Route
+                exact
+                path="projectsApproved"
+                element={<ProjectsApproved />}
+              />
+              <Route
+                exact
+                path="projectsPending"
+                element={<ProjectsPending />}
+              />
+              <Route
+                exact
+                path="projectsCompleted"
+                element={<ProjectsCompleted />}
+              />
+              <Route exact path="donationsAdmin" element={<Donations />} />
+              <Route exact path="InfoAdmin" element={<AdminInfo />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route exact path="projectsUser" element={<ProjectsUser />} />
+              <Route exact path="donationHistory" element={<DonationUser />} />
+              <Route exact path="userInfo" element={<UserInfo />} />
+            </Routes>
+          )}
         </GridItem>
       </Grid>
     </>
