@@ -13,7 +13,7 @@ export default function SignUp() {
 
   return (
     <div>
-      <a className="enlace" href="https://pf-api-production.up.railway.app/auth/google">
+      <a className="enlace" href="http://localhost:3001/auth/google">
         <Button >
           <ImGoogle color="#07588a" />
           &nbsp;&nbsp;inicio de sesion con google
