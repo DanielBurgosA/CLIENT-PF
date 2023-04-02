@@ -20,12 +20,15 @@ import { addseeLaterItem } from "../../Redux/Slicers/projectSlicer";
 
 export default function ProjectCard(props) {
   const dispatch = useDispatch();
-  const { name, abstrac, image, location, id, user, title } = props.project;
+  const { name, abstrac, image, location, id, user, title, completed, currentAmount, cost } = props.project;
   const navigate = useNavigate();
   const LogInStatus = useSelector((state) => state.login.status);
+
+  const max=cost-currentAmount;
+
   const clickHandlerDonate = (e) => {
     if (LogInStatus) {
-      navigate("/pagos?id="+id);
+      navigate(`/pagos?id=${id}&max=${max}`);
     } else {
       navigate("/login");
     }
@@ -83,9 +86,9 @@ export default function ProjectCard(props) {
           }}
           margin="5px"
         >
-          <Button flex="1" variant="ghost" onClick={clickHandlerDonate}>
+          {completed?<p>COMPLETED</p> : <Button flex="1" variant="ghost" onClick={clickHandlerDonate}>
             Donar
-          </Button>
+          </Button>}
 
           <Button
             flex="1"

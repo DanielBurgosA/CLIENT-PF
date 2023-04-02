@@ -19,7 +19,10 @@ export default function Pagos() {
   
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search);
+
   const id = queryParams.get('id');
+  const max = queryParams.get('max');
+  console.log(max);
 
   const[form, setForm]=useState({
     amount:0,
