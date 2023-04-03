@@ -36,7 +36,6 @@ export default function Page({ projects }) {
                             "nav footer"`}
       gridTemplateRows={"50px 1fr 30px"}
       gridTemplateColumns={"150px 1fr "}
-      h="200px"
       gap="1"
       color="blackAlpha.700"
     >
@@ -72,7 +71,6 @@ export default function Page({ projects }) {
       </GridItem>
 
       <GridItem pl="2" area={"footer"}>
-        <LargeWithNewsletter />
       </GridItem>
     </Grid>
   );

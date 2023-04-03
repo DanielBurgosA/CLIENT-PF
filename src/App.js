@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 import { userGoogleLogin } from "./Redux/Slicers/LogInOutSlicer";
+import { getUser } from "./Redux/Slicers/LogInOutSlicer";
 import ForgotPassword from "./Pages/forgotPassword/ForgotPAssword";
 import ResetPassword from "./Pages/ResetPAssword/ResetPassword";
 import Profile from "./Components/Profile/Profile";
@@ -38,6 +39,7 @@ function App() {
   useEffect(() => {
     dispatch(getProject());
     dispatch(getSeeLaterItem());
+    dispatch(getUser());
   });
 
   return (
@@ -66,7 +68,7 @@ function App() {
         <Route exact path="/reset" element={<ResetPassword />} />
         <Route exact path="/profile/*" element={<Profile />} />
       </Routes>
-      {location.pathname.indexOf("projects") !== 1 && <LargeWithNewsletter />}
+     <LargeWithNewsletter />
     </div>
   );
 }

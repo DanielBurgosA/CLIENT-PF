@@ -12,6 +12,8 @@ const initialState = {
   ProjectsCompleted: [],
   ProjectsApproved: [],
   ProjectsRejected: [],
+  bannedComments: [],
+  activeComments: [],
 
 };
 export const getProject = createAsyncThunk(
@@ -42,7 +44,7 @@ export const changeBanStatus = createAsyncThunk(
   "adminDashboard/PutBanStatus",
   async (data) => {
     const res = await axios.put(`/ban`, data);
-    
+
     return res.data;
   }
 );
@@ -55,6 +57,22 @@ export const changeProjectStatus = createAsyncThunk(
   }
 );
 
+export const getComments = createAsyncThunk(
+  "adminDashboard/GetComments",
+  async () => {
+    const res = await axios.get('/comments/project');
+    return res.data;
+  }
+);
+
+
+export const updateCommentStatus = createAsyncThunk(
+  "adminDashboard/PutCommentDeleted",
+  async (data) => {
+    const res = await axios.put("/comments", data);
+    return res.data; 
+  }
+)
 
 const adminDashboardSlicer = createSlice({
   name: "adminDashboard",
@@ -87,7 +105,7 @@ const adminDashboardSlicer = createSlice({
           );
           state.ProjectsCompleted = [...CompletadosProyectos];
         }
-        if(state.AllProjects.length > 0){
+        if (state.AllProjects.length > 0) {
           state.ProjectsRejected = state.AllProjects.filter(
             (elem) => elem.status === "rejected"
           );
@@ -95,7 +113,7 @@ const adminDashboardSlicer = createSlice({
       })
       .addCase(getUsers.fulfilled, (state, action) => {
         state.AllUsers = action.payload;
-        
+
 
         if (state.AllUsers.length > 0) {
           const TodosUsuarios = state.AllUsers;
@@ -129,6 +147,16 @@ const adminDashboardSlicer = createSlice({
       // .addCase(changeBanStatus.fulfilled, async (state, action) => {
       //   const resU = await getUsers();
       // })
+      .addCase(getComments.fulfilled, (state, action) => {
+        state.bannedComments = action.payload.allComments.filter(comment => comment.deleted === true);
+        console.log(state.bannedComments);
+        state.activeComments = action.payload.allComments.filter(comment => comment.deleted === false);
+        console.log(state.activeComments);
+      })
+
+      .addCase(updateCommentStatus.fulfilled, (state, action) => {
+        console.log(action.payload);
+      })
   },
 });
 

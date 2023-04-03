@@ -13,7 +13,11 @@ import ProjectsCompleted from "../../Pages/DashboardAdmin/Projects/ProjectsCompl
 import ActiveUsersInfo from "../../Pages/DashboardAdmin/Users/ActiveUsersInfo";
 import BannedUsersInfo from "../../Pages/DashboardAdmin/Users/BannedUsersInfo";
 import ProjectsRejected from "../../Pages/DashboardAdmin/Projects/ProjectsRejected";
-// import style from "./Profile.module.css";
+import ActiveComments from "../../Pages/DashboardAdmin/Comments/ActiveComments";
+import BannedComments from "../../Pages/DashboardAdmin/Comments/BannedComments";
+import EditProfile from "../../Pages/DashboardUser/EditProfile/EditProfile";
+
+
 
 export default function Profile() {
   const rol = localStorage.getItem("rol");
@@ -23,7 +27,6 @@ export default function Profile() {
         templateAreas={`"header header" "nav main"`}
         gridTemplateRows={"0px 1fr 30px"}
         gridTemplateColumns={"250px 1fr"}
-        h="33rem"
         color="blackAlpha.700"
         fontWeight="bold"
       >
@@ -54,6 +57,8 @@ export default function Profile() {
               <Route exact path="InfoAdmin" element={<AdminInfo />} />
               <Route exact path="bannedUsers" element={<BannedUsersInfo/>} />
               <Route exact path="activeUsers" element={<ActiveUsersInfo/>} />
+              <Route exact path="userComments/banned" element={<BannedComments/>} />
+              <Route exact path="userComments/active" element={<ActiveComments/>} />
 
             </Routes>
           ) : (
@@ -61,6 +66,7 @@ export default function Profile() {
               <Route exact path="projectsUser" element={<ProjectsUser />} />
               <Route exact path="donationHistory" element={<DonationUser />} />
               <Route exact path="userInfo" element={<UserInfo />} />
+              <Route exact path="edit" element={<EditProfile/>}/>
             </Routes>
           )}
         </GridItem>

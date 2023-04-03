@@ -4,7 +4,8 @@ import Cookie from "js-cookie";
 
 
 const initialState = {
-    status: localStorage.getItem("value") ? true : false
+    status: localStorage.getItem("value") ? true : false,
+    user: {},
 }
 
 export const userLogIn = createAsyncThunk(
@@ -43,6 +44,18 @@ export const logOutGoogle = createAsyncThunk(
     }
 
 )
+
+export const getUser = createAsyncThunk("userDashboard/getUser", async () => {
+    axios.interceptors.request.use((req) => {
+        const token = localStorage.getItem("value");
+        req.headers.authorization = `Bearer ${token}`;
+        return req;
+    });
+    const res = await axios.get(`/user`);
+
+    return res.data;
+});
+
 const logInSlicer = createSlice({
     name: "login",
     initialState,
@@ -58,13 +71,15 @@ const logInSlicer = createSlice({
     extraReducers(builder) {
         builder
             .addCase(userLogIn.fulfilled, (state, action) => {
+                console.log("eso",action.payload)
                 if (action.payload.success === true) {
                     localStorage.setItem("value", action.payload.token);
                     localStorage.setItem("origin", action.payload.origin);
-                    action.payload.rol&&localStorage.setItem("rol", action.payload.rol);
-                    console.log(action.payload.rol);
+                    action.payload.rol && localStorage.setItem("rol", action.payload.rol);
+                    
+                    state.user = action.payload.userFix
                     state.status = true;
-                }else{
+                } else {
                     state.status = false;
                 }
             })
@@ -73,7 +88,10 @@ const logInSlicer = createSlice({
                 if (action.payload.token) {
                     localStorage.setItem("value", action.payload.token)
                     localStorage.setItem("origin", action.payload.origin)
+                    console.log("este es mi console", action.payload);
+                    state.user = action.payload.user
                     state.status = true;
+                    
                 } else {
                     state.status = false;
                 }
@@ -83,6 +101,11 @@ const logInSlicer = createSlice({
                 localStorage.removeItem("value")
                 localStorage.removeItem("origin")
                 state.status = false
+            })
+
+            .addCase(getUser.fulfilled, (state, action) => {
+                state.user = action.payload;
+                
             })
     }
 
