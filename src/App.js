@@ -12,6 +12,8 @@ import {
   Projects,
   Validation,
   UserForm,
+  CancelPayment,
+  ExecutePayment
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
 
@@ -58,6 +60,8 @@ function App() {
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
+        <Route exact path="/execute-payment" element={<ExecutePayment />} />
+        <Route exact path="/cancel-payment" element={<CancelPayment />} />
         <Route
           exact
           path="/forgotPassword"
