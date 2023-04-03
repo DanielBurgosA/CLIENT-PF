@@ -20,21 +20,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 import { userGoogleLogin } from "./Redux/Slicers/LogInOutSlicer";
-import  ForgotPassword  from "./Pages/forgotPassword/ForgotPAssword";
-import  ResetPassword  from "./Pages/ResetPAssword/ResetPassword";
-
+import ForgotPassword from "./Pages/forgotPassword/ForgotPAssword";
+import ResetPassword from "./Pages/ResetPAssword/ResetPassword";
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const LogInStatus = useSelector (state => state.login.status)
+  const LogInStatus = useSelector((state) => state.login.status);
 
-  
-  useEffect(()=>{
-    if (!LogInStatus){
-        dispatch(userGoogleLogin());
+  useEffect(() => {
+    if (!LogInStatus) {
+      dispatch(userGoogleLogin());
     }
-    
   }, [dispatch, LogInStatus]);
 
   useEffect(() => {
@@ -60,8 +58,13 @@ function App() {
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
-        <Route exact path="/forgotPassword" element={<ForgotPassword/>}></Route>
-        <Route exact path = "/reset" element={< ResetPassword/>}/>
+        <Route
+          exact
+          path="/forgotPassword"
+          element={<ForgotPassword />}
+        ></Route>
+        <Route exact path="/reset" element={<ResetPassword />} />
+        <Route exact path="/profile/*" element={<Profile />} />
       </Routes>
       {location.pathname.indexOf("projects") !== 1 && <LargeWithNewsletter />}
     </div>
