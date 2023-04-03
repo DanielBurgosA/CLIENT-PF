@@ -42,6 +42,7 @@ export const changeBanStatus = createAsyncThunk(
   "adminDashboard/PutBanStatus",
   async (data) => {
     const res = await axios.put(`/ban`, data);
+    
     return res.data;
   }
 );
@@ -110,6 +111,8 @@ const adminDashboardSlicer = createSlice({
           );
           state.BadUsers = [...UsuariosMalos];
         }
+
+
         // if (state.AllUsers.length > 0) {
         //   const TodosUsuarios = state.AllUsers;
         //   const UsuarioBorrado = TodosUsuarios.filter(
@@ -121,7 +124,11 @@ const adminDashboardSlicer = createSlice({
       .addCase(getDonations.fulfilled, (state, action) => {
         state.AllDonation = action.payload;
         console.log(action.payload)
-      });
+      })
+
+      // .addCase(changeBanStatus.fulfilled, async (state, action) => {
+      //   const resU = await getUsers();
+      // })
   },
 });
 

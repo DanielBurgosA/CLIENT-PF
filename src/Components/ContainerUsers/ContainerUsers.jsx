@@ -7,17 +7,31 @@ import { getUsers } from "../../Redux/Slicers/AdminDashboard";
 export default function ContainerUsers({ data, render}) {
     const dispatch = useDispatch();
 
-    const ban = (id) => {
+    const ban = async (id) => {
       const data = {id: id, status: "ban" };
-      dispatch(changeBanStatus(data));
-      render();
-      
+      const a =  await dispatch(changeBanStatus(data));
+      console.log(a.meta?.requestStatus)
+      //render();
+      console.log(a)
+      if (a.meta?.requestStatus === "fulfilled"){
+        console.log("hola")
+        dispatch(getUsers());
+      }
     }
+
     const unBan = (id) => {
       const data = {id: id, status: "unBan" };
       dispatch(changeBanStatus(data));
       console.log(data)
-      render();
+      const a =  await dispatch(changeBanStatus(data));
+      console.log(a.meta?.requestStatus)
+      //render();
+      console.log(a)
+      if (a.meta?.requestStatus === "fulfilled"){
+        console.log("hola")
+        dispatch(getUsers());
+      }
+    }
     
     }
 
