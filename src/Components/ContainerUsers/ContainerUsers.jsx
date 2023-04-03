@@ -19,11 +19,11 @@ export default function ContainerUsers({ data, render}) {
       }
     }
 
-    const unBan = (id) => {
+    const unBan = async (id) => {
       const data = {id: id, status: "unBan" };
       dispatch(changeBanStatus(data));
       console.log(data)
-      const a =  await dispatch(changeBanStatus(data));
+      const a = await dispatch(changeBanStatus(data));
       console.log(a.meta?.requestStatus)
       //render();
       console.log(a)
@@ -33,7 +33,7 @@ export default function ContainerUsers({ data, render}) {
       }
     }
     
-    }
+    
 
     return (
       <>
