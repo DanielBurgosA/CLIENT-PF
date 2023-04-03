@@ -6,6 +6,7 @@ const initialState = {
   postStatus: "",
   error: null,
   projectId: {},
+  projectIdPago: {},
   projectByName: [],
   ProjectsToDisplay: [],
   filterLocation: [],
@@ -72,8 +73,16 @@ const projectsSlicer = createSlice({
       state.projectId = {};
     },
 
+    cleanIdPago(state, action) {
+      state.projectIdPago = {};
+    },
+
     provGetId(state, action) {
       state.projectId = state.AllProjects.filter((project) => action.payload == project.id)[0];
+    },
+    
+    provGetIdPago(state, action) {
+      state.projectIdPago = state.AllProjects.filter((project) => action.payload == project.id)[0];
     },
 
     ///////////logica filtros////////////
@@ -191,5 +200,5 @@ const projectsSlicer = createSlice({
       });
   },
 });
-export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName, addseeLaterItem, getSeeLaterItem } = projectsSlicer.actions;
+export const { filter, addFilterLocation, addFilterState, cleanIdPago, orderByAlpha, provGetId,provGetIdPago, cleanId, searchName, addseeLaterItem, getSeeLaterItem } = projectsSlicer.actions;
 export default projectsSlicer.reducer;
