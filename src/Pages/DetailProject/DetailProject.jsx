@@ -18,10 +18,13 @@ import {
 } from "@chakra-ui/react";
 import style from "./DetailProject.module.css";
 import AddComment from "../../Components/CreateComment/CreateComment.jsx";
+import CommentsProjectById from "../../Components/CommentsByIds/CommentsProjectById";
 
 export default function DetailProject() {
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  const LogInStatus = useSelector((state) => state.login.status);
 
   useEffect(() => {
     dispatch(provGetId(id));
@@ -29,9 +32,9 @@ export default function DetailProject() {
       dispatch(cleanId());
     };
   }, [dispatch, id]);
-  
+
   let projectById = useSelector((state) => state.project.projectId);
-  
+
   return (
     <Box maxH="1.5">
       {projectById && Object.keys(projectById) ? (
@@ -85,7 +88,10 @@ export default function DetailProject() {
           </Button>
         </Link>
       </Box>
-      <AddComment />
+      {LogInStatus ? <AddComment /> : ""}
+      <div>
+        <CommentsProjectById />
+      </div>
     </Box>
   );
 }
