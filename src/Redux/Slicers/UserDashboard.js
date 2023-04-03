@@ -26,9 +26,8 @@ export const getProject = createAsyncThunk(
 export const getDonations = createAsyncThunk(
   "userDashboard/donations",
   async () => {
-    const res = await axios.get(`/donations`);
-    const data = res.json();
-    return data;
+    const res = await axios.get(`/user/donations`);
+    return res.data;
   }
 );
 export const getUser = createAsyncThunk("userDashboard/getUser", async () => {
@@ -53,14 +52,12 @@ const userDashboardSlicer = createSlice({
         const TodosProyectos = state.AllProjects;
         //aca seria el filtrado del proyecto correspondiente al usuario que luego se guarda en el ProjectsUser
       })
-      .addCase(getDonations.fulfilled, (state, action) => {
-        state.AllDonation = [...action.payload];
-        const TodasDonaciones = state.AllDonation;
-        //aca seria el filtrado las donaciones correspondiente al usuario que luego se guarda en el UserDonations
-      })
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload;
-      });
+      })
+      .addCase(getDonations.fulfilled, (state, action) => {
+        console.log(action.payload)
+      })
   },
 });
 

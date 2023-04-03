@@ -8,9 +8,19 @@ const initialState = {
 export const linkPaymentPlatform = createAsyncThunk(
   "paymentLink/linkPaymentPlatform",
   async (form) => {
-    const res = await axios.post(`/create-payment`, form);
+    axios.interceptors.request.use(req => {
+      
+      const token = localStorage.getItem("value")
+      req.headers.authorization =`Bearer ${token}`;
+      return req;
+    });
+    try {
+      const res = await axios.post(`/create-payment`, form);
+      return res.data;
+    } catch (error) {
+      console.log(error.message)
+    }
     
-    return res.data;
   }
 );
 

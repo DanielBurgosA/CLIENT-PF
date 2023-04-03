@@ -10,6 +10,9 @@ import SidebarAdmin from "../DashboardAdmin/SidebarAdmin";
 import ProjectsApproved from "../../Pages/DashboardAdmin/Projects/ProjectsApproved";
 import ProjectsPending from "../../Pages/DashboardAdmin/Projects/ProjectsPending";
 import ProjectsCompleted from "../../Pages/DashboardAdmin/Projects/ProjectsCompleted";
+import ActiveUsersInfo from "../../Pages/DashboardAdmin/Users/ActiveUsersInfo";
+import BannedUsersInfo from "../../Pages/DashboardAdmin/Users/BannedUsersInfo";
+import ProjectsRejected from "../../Pages/DashboardAdmin/Projects/ProjectsRejected";
 // import style from "./Profile.module.css";
 
 export default function Profile() {
@@ -46,8 +49,12 @@ export default function Profile() {
                 path="projectsCompleted"
                 element={<ProjectsCompleted />}
               />
+              <Route exact path="projectsRejected" element={<ProjectsRejected/>}/>
               <Route exact path="donationsAdmin" element={<Donations />} />
               <Route exact path="InfoAdmin" element={<AdminInfo />} />
+              <Route exact path="bannedUsers" element={<BannedUsersInfo/>} />
+              <Route exact path="activeUsers" element={<ActiveUsersInfo/>} />
+
             </Routes>
           ) : (
             <Routes>

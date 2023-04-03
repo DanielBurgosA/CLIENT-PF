@@ -11,7 +11,8 @@ const initialState = {
   ProjectsPending: [],
   ProjectsCompleted: [],
   ProjectsApproved: [],
-  ProjectsDeleted: [],
+  ProjectsRejected: [],
+
 };
 export const getProject = createAsyncThunk(
   "adminDashboard/getProject",
@@ -24,9 +25,8 @@ export const getProject = createAsyncThunk(
 export const getUsers = createAsyncThunk(
   "adminDashboard/getUsers",
   async () => {
-    const res = await axios.get(`/getUsers`);
-    const data = res.json();
-    return data;
+    const res = await axios.get(`/users`);
+    return res.data;
   }
 );
 
@@ -34,10 +34,26 @@ export const getDonations = createAsyncThunk(
   "adminDashboard/donations",
   async () => {
     const res = await axios.get(`/donations`);
-    const data = res.json();
-    return data;
+    return res.data;
   }
 );
+
+export const changeBanStatus = createAsyncThunk(
+  "adminDashboard/PutBanStatus",
+  async (data) => {
+    const res = await axios.put(`/ban`, data);
+    return res.data;
+  }
+);
+
+export const changeProjectStatus = createAsyncThunk(
+  "adminDashboard/PutProjectStatus",
+  async (data) => {
+    const res = await axios.put(`/projects`, data);
+    return res.data;
+  }
+);
+
 
 const adminDashboardSlicer = createSlice({
   name: "adminDashboard",
@@ -70,34 +86,41 @@ const adminDashboardSlicer = createSlice({
           );
           state.ProjectsCompleted = [...CompletadosProyectos];
         }
+        if(state.AllProjects.length > 0){
+          state.ProjectsRejected = state.AllProjects.filter(
+            (elem) => elem.status === "rejected"
+          );
+        }
       })
       .addCase(getUsers.fulfilled, (state, action) => {
-        state.AllUsers = [...action.payload];
+        state.AllUsers = action.payload;
+        
 
         if (state.AllUsers.length > 0) {
           const TodosUsuarios = state.AllUsers;
           const UsuariosBuenos = TodosUsuarios.filter(
-            (elem) => elem.ban === false
+            (elem) => elem.deleted === false
           );
           state.GoodUsers = [...UsuariosBuenos];
         }
         if (state.AllUsers.length > 0) {
           const TodosUsuarios = state.AllUsers;
           const UsuariosMalos = TodosUsuarios.filter(
-            (elem) => elem.ban === true
+            (elem) => elem.deleted === true
           );
           state.BadUsers = [...UsuariosMalos];
         }
-        if (state.AllUsers.length > 0) {
-          const TodosUsuarios = state.AllUsers;
-          const UsuarioBorrado = TodosUsuarios.filter(
-            (elem) => elem.deleted === true
-          );
-          state.DeleteUsers = [...UsuarioBorrado];
-        }
+        // if (state.AllUsers.length > 0) {
+        //   const TodosUsuarios = state.AllUsers;
+        //   const UsuarioBorrado = TodosUsuarios.filter(
+        //     (elem) => elem.deleted === true
+        //   );
+        //   state.DeleteUsers = [...UsuarioBorrado];
+        // }
       })
       .addCase(getDonations.fulfilled, (state, action) => {
-        state.AllDonation = [...action.payload];
+        state.AllDonation = action.payload;
+        console.log(action.payload)
       });
   },
 });
