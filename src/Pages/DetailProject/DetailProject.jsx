@@ -8,15 +8,16 @@ import style from "./DetailProject.module.css"
 export default function DetailProject() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  let projectById = useSelector((state) => state.project.projectId);
-
+  
   useEffect(() => {
     dispatch(provGetId(id));
     return ()=>{
       dispatch(cleanId());
     }
   }, [dispatch, id]);
-
+  
+  let projectById = useSelector((state) => state.project.projectId);
+  
   return (
     <Box maxH='1.5'>
         <Box textAlign='justify'>

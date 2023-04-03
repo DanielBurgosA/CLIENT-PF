@@ -24,11 +24,9 @@ export default function ProjectCard(props) {
   const navigate = useNavigate();
   const LogInStatus = useSelector((state) => state.login.status);
 
-  const max=cost-currentAmount;
-
   const clickHandlerDonate = (e) => {
     if (LogInStatus) {
-      navigate(`/pagos?id=${id}&max=${max}`);
+      navigate(`/pagos?id=${id}`);
     } else {
       navigate("/login");
     }
