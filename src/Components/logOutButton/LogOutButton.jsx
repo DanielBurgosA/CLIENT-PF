@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux"
 import { Button } from "@chakra-ui/react";
 import { logOutLocal, logOutGoogle } from "../../Redux/Slicers/LogInOutSlicer";
+import { useNavigate } from 'react-router-dom';
 
 export default function LogOutButton (){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const onClickHandler = () => {
         const origin = localStorage.getItem("origin");
@@ -12,7 +14,7 @@ export default function LogOutButton (){
         }else{
             dispatch(logOutGoogle())
         }
-        
+        navigate('/home');        
     }
 
     return (

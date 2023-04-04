@@ -40,8 +40,6 @@ export default function FormProjects() {
     myWidget.open()
   }
 
-
-  const users = useSelector((state) => state.user.users);
   const LogInStatus = useSelector((state) => state.login.status);
   console.log("login del create", LogInStatus);
   const dispatch = useDispatch();
