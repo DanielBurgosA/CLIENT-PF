@@ -25,9 +25,15 @@ export default function Pagos() {
   const payLink = useSelector((state) => state.paymentLink.payLink);
   const LogInStatus = useSelector (state => state.login.status)
   const location = useLocation()
+  
   const queryParams = new URLSearchParams(location.search);
+  console.log("esto es query", queryParams) //objeto vacio
 
   const id = queryParams.get('id');
+
+    /* const pathname = window.location.pathname;
+    const id = pathname.split('/').pop(); 
+    console.log("esto es id", id); */
 
   useEffect(()=>{
     dispatch(provGetIdPago(id));
@@ -103,19 +109,5 @@ export default function Pagos() {
                 </Stack>
             </Flex>
         </form>
-    // <div>
-    //   <form onSubmit={handleSubmit(Submit)}>
-    //                 <h1>{`gracias por donar a ${projectById.name}`}</h1>
-    //                 <h2>{`faltan ${max} dolares para alcanzar nuestra meta`}</h2>
-    //                 <FormControl>
-    //                     <FormLabel>Amount to donate</FormLabel>
-    //                     <Input type="number" placeholder="enter the amount you want to donate (in dollars)" {...register('donation')} value={form.amount} onChange={handleChange} min={5} max={max}/>
-    //                 </FormControl>
-
-    //                 <Flex>
-    //                 <Button type="submit" className={style.button}>Realizar donacion con PayPal</Button>
-    //                 </Flex>
-    //         </form>
-    // </div>
   );
 }
