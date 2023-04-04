@@ -18,28 +18,31 @@ import { SmallCloseIcon } from '@chakra-ui/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { EditSchema } from "./errors";
-//quede en conectar todo
+import { updateUser } from '../../../Redux/Slicers/UserDashboard';
+import { getUser } from "../../../Redux/Slicers/LogInOutSlicer";
+import EditEmail  from "./EditEmail/EditEmail"
+import EditPassword from "./EditPassword/EditPassword"
 
 
- 
 
 export default function EditProfile() {
     const user = useSelector(state => state.login.user)
 
+    const origin = localStorage.getItem("origin")
 
     const dispatch = useDispatch();
 
+    const CloseIconHandler = async () => {
+        const data = { image: null };
+        const res = await dispatch(updateUser(data));
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(EditSchema)
-    })
+        if (res.meta.fulfilled === "fulfilled") {
+            dispatch(getUser());
+        }
 
-  
-
-    const Submit = (data) => {
-       
     }
+
+    
 
     return (
         <Flex
@@ -63,7 +66,7 @@ export default function EditProfile() {
                     <FormLabel>{user.name}</FormLabel>
                     <Stack direction={['column', 'row']} spacing={6}>
                         <Center>
-                            <Avatar size="xl" src="https://bit.ly/sage-adebayo">
+                            <Avatar size="xl" src={user.image}>
                                 <AvatarBadge
                                     as={IconButton}
                                     size="sm"
@@ -71,52 +74,19 @@ export default function EditProfile() {
                                     top="-10px"
                                     colorScheme="red"
                                     aria-label="remove Image"
-                                    icon={<SmallCloseIcon />}
+                                    icon={<SmallCloseIcon onClick={CloseIconHandler} />}
                                 />
                             </Avatar>
                         </Center>
                         <Center w="full">
-                            <Button w="full">Change Icon</Button>
+                            <Button w="full">Change Icon</Button >//cloudinary
                         </Center>
                     </Stack>
                 </FormControl>
+                {origin === "google"? null:<EditEmail></EditEmail>}
+                {origin === "google"? null:<EditPassword></EditPassword>}
 
-                <FormControl id="email" isRequired>
-                    <FormLabel>Email address</FormLabel>
-                    <Input
-                        placeholder={user.email}
-                        _placeholder={{ color: 'gray.500' }}
-                        type="email"
-                    />
-                </FormControl>
-                <FormControl id="password" isRequired>
-                    <FormLabel>Password</FormLabel>
-                    <Input
-                        placeholder="password"
-                        _placeholder={{ color: 'gray.500' }}
-                        type="password"
-                    />
-                </FormControl>
-                <Stack spacing={6} direction={['column', 'row']}>
-                    <Button
-                        bg={'red.400'}
-                        color={'white'}
-                        w="full"
-                        _hover={{
-                            bg: 'red.500',
-                        }}>
-                        Cancel
-                    </Button>
-                    <Button
-                        bg={'blue.400'}
-                        color={'white'}
-                        w="full"
-                        _hover={{
-                            bg: 'blue.500',
-                        }}>
-                        Submit
-                    </Button>
-                </Stack>
+
             </Stack>
         </Flex>
     )

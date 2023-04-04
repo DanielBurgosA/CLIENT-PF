@@ -41,7 +41,7 @@ export const updateUser = createAsyncThunk(
       req.headers.authorization = `Bearer ${token}`;
       return req;
     });
-    const res = await axios.put(`/user/donations`, data);
+    const res = await axios.put(`/users`, data);
     return res.data;
   }
 );
@@ -59,8 +59,11 @@ const userDashboardSlicer = createSlice({
       })
 
       .addCase(getDonations.fulfilled, (state, action) => {
+        console.log(action.payload)
         state.DonationUser = action.payload;
       })
+
+     
   },
 });
 
