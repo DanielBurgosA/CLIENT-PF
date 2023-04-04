@@ -54,7 +54,6 @@ export default function Pagos() {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-
   const handleChange = (e) =>{
     setForm({...form, amount : e.target.value})
   }

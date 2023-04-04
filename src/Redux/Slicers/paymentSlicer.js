@@ -20,7 +20,6 @@ export const linkPaymentPlatform = createAsyncThunk(
     } catch (error) {
       console.log(error.message)
     }
-    
   }
 );
 
@@ -33,7 +32,8 @@ const paymentSlicer = createSlice({
       },
     },
     extraReducers: (builder) => {
-      builder.addCase(linkPaymentPlatform.fulfilled, (state, action) => {
+      builder
+      .addCase(linkPaymentPlatform.fulfilled, (state, action) => {
         state.payLink = action.payload.data.links[1].href;
       });
     },
