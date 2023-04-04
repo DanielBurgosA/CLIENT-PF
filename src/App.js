@@ -59,6 +59,8 @@ function App() {
         <Route exact path="/create-user" element={<UserForm />} />
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
+        <Route exact path="/cancel-payment" element={<CancelPayment />} />
+        <Route exact path="/execute-payment" element={<ExecutePayment />} />
         <Route exact path="/validation" element={<Validation />} />
         <Route exact path="/execute-payment" element={<ExecutePayment />} />
         <Route exact path="/cancel-payment" element={<CancelPayment />} />
