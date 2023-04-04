@@ -15,13 +15,16 @@ import {
   VStack,
   Heading,
   Card,
-  Spinner
+  Spinner,
+  useColorMode, 
+  Switch
 } from "@chakra-ui/react";
 import style from "./DetailProject.module.css";
 import AddComment from "../../Components/CreateComment/CreateComment.jsx";
 import CommentsProjectById from "../../Components/CommentsByIds/CommentsProjectById";
 
 export default function DetailProject() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -68,15 +71,15 @@ export default function DetailProject() {
               />
             </Center>
             <Card
-              bg="#F6F8FA"
-              variant="outline"
-              borderColor="#D8DEE4"
-              maxW="70rem"
-            >
-              <Text fontSize="20px" padding="15px">
-                {projectById.description}
-              </Text>
-            </Card>
+                bg={colorMode === "dark" ? "#1A202C" : "#F6F8FA"}
+                variant="outline"
+                borderColor="#D8DEE4"
+                maxW="70rem"
+              >
+  <Text fontSize="20px" padding="15px">
+    {projectById.description}
+  </Text>
+</Card>
           </VStack>
         </Box>
       ) : (
