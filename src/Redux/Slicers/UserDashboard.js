@@ -2,44 +2,50 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  AllDonation: [],
-  AllProjects: [],
   DonationUser: [],
-  ProjectsUser: {},
-  UserInfo: {},
-  user: {},
+  ProjectUser: [],
 };
 export const getProject = createAsyncThunk(
   "userDashboard/getProject",
   async () => {
-    const res = await axios.get(`/userprojects`);
+    axios.interceptors.request.use((req) => {
+      const token = localStorage.getItem("value");
+      req.headers.authorization = `Bearer ${token}`;
+      return req;
+    });
+    const res = await axios.get(`/user/projects`);
     return res.data;
   }
 );
 
-// export const getUsers = createAsyncThunk("userDashboard/getUsers", async () => {
-//   const res = await axios.get(`/getUsers`);
-//   const data = res.json();
-//   return data;
-// });
+
 
 export const getDonations = createAsyncThunk(
   "userDashboard/donations",
   async () => {
+    axios.interceptors.request.use((req) => {
+      const token = localStorage.getItem("value");
+      req.headers.authorization = `Bearer ${token}`;
+      return req;
+    });
     const res = await axios.get(`/user/donations`);
     return res.data;
   }
 );
-export const getUser = createAsyncThunk("userDashboard/getUser", async () => {
-  axios.interceptors.request.use((req) => {
-    const token = localStorage.getItem("value");
-    req.headers.authorization = `Bearer ${token}`;
-    return req;
-  });
-  const res = await axios.get(`/user`);
 
-  return res.data;
-});
+export const updateUser = createAsyncThunk(
+  "userDashboard/donations",
+  async (data) => {
+    axios.interceptors.request.use((req) => {
+      const token = localStorage.getItem("value");
+      req.headers.authorization = `Bearer ${token}`;
+      return req;
+    });
+    const res = await axios.put(`/users`, data);
+    return res.data;
+  }
+);
+
 const userDashboardSlicer = createSlice({
   name: "userDashboard",
   initialState,
@@ -48,16 +54,16 @@ const userDashboardSlicer = createSlice({
   extraReducers(builder) {
     builder
       .addCase(getProject.fulfilled, (state, action) => {
-        state.AllProjects = [...action.payload];
-        const TodosProyectos = state.AllProjects;
-        //aca seria el filtrado del proyecto correspondiente al usuario que luego se guarda en el ProjectsUser
+        console.log("projects", action.payload)
+        state.ProjectUser = action.payload;
       })
-      .addCase(getUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-      })
+
       .addCase(getDonations.fulfilled, (state, action) => {
         console.log(action.payload)
+        state.DonationUser = action.payload;
       })
+
+     
   },
 });
 

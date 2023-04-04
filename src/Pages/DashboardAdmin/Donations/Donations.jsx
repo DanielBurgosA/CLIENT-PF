@@ -20,7 +20,7 @@ export default function Donations() {
 
   useEffect(() => {
     dispatch(getDonations());
-  })
+  }, [dispatch])
 
   return (
 
