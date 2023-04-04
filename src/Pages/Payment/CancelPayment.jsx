@@ -10,7 +10,7 @@ export default function ExecutePayment() {
       textAlign="center"
     >
       <Heading as="h1" size="lg" color="white">
-      Payment canceled
+        Payment was successful
       </Heading>
     </Box>
   );

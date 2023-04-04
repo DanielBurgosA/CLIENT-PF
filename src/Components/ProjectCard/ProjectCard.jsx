@@ -47,19 +47,19 @@ export default function ProjectCard(props) {
       >
         <CardHeader maxHeight="80px">
           <Flex spacing="4" alignItems="center">
-          <Link to={`/user/${user}`}>
-        <Avatar name={user} src="https://bit.ly/sage-adebayo" />
-          </Link>
+            <Link to={`/user/${user}`}>
+              <Avatar name={user} src="https://bit.ly/sage-adebayo" />
+            </Link>
             <Box>
-           <Text fontWeight="bold" fontSize="sm">{name}</Text>
-           <Text fontSize="sm">{location}</Text>
+              <Text fontWeight="bold" fontSize="sm">{name}</Text>
+              <Text fontSize="sm">{location}</Text>
             </Box>
           </Flex>
         </CardHeader>
 
         <Center>
-          <Text fontSize="sm" mt="4">{`Amount: ${currentAmount} / ${cost}`}</Text>
-          </Center>
+        <Text fontSize="sm" mt="4">{`Amount: ${currentAmount} / ${cost}`}</Text>
+        </Center>
 
         <Link to={`/projects/${id}`} key={id}>
           <CardBody maxHeight="80px">
@@ -75,6 +75,7 @@ export default function ProjectCard(props) {
               minHeight="200px"
             />
           </Center>
+          
         </Link>
         <CardFooter
           justify="space-between"
