@@ -24,7 +24,7 @@ export default function Donations() {
 
   return (
 
-    <div className={style.container}>
+    
       <TableContainer>
         <Table variant='simple'>
           <TableCaption>Imperial to metric conversion factors</TableCaption>
@@ -48,6 +48,5 @@ export default function Donations() {
         </Table>
       </TableContainer>
 
-    </div>
   );
 }

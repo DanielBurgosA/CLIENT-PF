@@ -130,7 +130,7 @@ const logInSlicer = createSlice({
             })
 
             .addCase(getUser.fulfilled, (state, action) => {
-                console.log("este es", action.payload);
+                
                 state.user = action.payload;
             })
 

@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  DonationUser: [],
-  ProjectUser: [],
+  donationUser: [],
+  projectUser: [],
 };
 export const getProject = createAsyncThunk(
   "userDashboard/getProject",
@@ -55,12 +55,12 @@ const userDashboardSlicer = createSlice({
     builder
       .addCase(getProject.fulfilled, (state, action) => {
         console.log("projects", action.payload)
-        state.ProjectUser = action.payload;
+        state.projectUser = action.payload;
       })
 
       .addCase(getDonations.fulfilled, (state, action) => {
         console.log(action.payload)
-        state.DonationUser = action.payload;
+        state.donationUser = action.payload;
       })
 
      

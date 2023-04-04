@@ -148,9 +148,10 @@ const adminDashboardSlicer = createSlice({
       //   const resU = await getUsers();
       // })
       .addCase(getComments.fulfilled, (state, action) => {
-        state.bannedComments = action.payload.allComments.filter(comment => comment.deleted === true);
+        console.log("este es", action.payload)
+        state.bannedComments = action.payload.filter(comment => comment.deleted === true);
         console.log(state.bannedComments);
-        state.activeComments = action.payload.allComments.filter(comment => comment.deleted === false);
+        state.activeComments = action.payload.filter(comment => comment.deleted === false);
         console.log(state.activeComments);
       })
 
