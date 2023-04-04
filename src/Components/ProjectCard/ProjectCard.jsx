@@ -91,40 +91,38 @@ export default function ProjectCard(props) {
           
         </Link>
         <CardFooter
-          justify="space-between"
-          flexWrap="wrap"
-          maxHeight="50px"
-          sx={{
-            "& > button": {
-              minW: "50px",
-            },
-          }}
-          margin="5px"
-        >
-          {completed?<p>COMPLETED</p> :!localStorage.getItem("rol")&&<Button flex="1"
-            variant="ghost"
-            type="submit"
-            backgroundColor="blue.500"
-            color="white"
-            value={id}
-            onClick={clickHandlerDonate}
-            _hover={{ backgroundColor: "green.500" }} >
-            Donar
-          </Button>}
+  justify="space-between"
+  flexWrap="wrap"
+  maxHeight="50px"
+  sx={{
+    "& > button": {
+      minW: "50px",
+    },
+  }}
+  margin="5px"
+>
 
-          <Button
-            flex="1"
-            variant="ghost"
-            type="submit"
-            backgroundColor="blue.500"
-            color="white"
-            value={id}
-            onClick={clickHandlerSeeLater}
-            _hover={{ backgroundColor: "green.500" }}
-          >
-            See later
-          </Button>
-        </CardFooter>
+  {completed ?  (
+    <div style={{ marginLeft: "75px" }}>
+      <p style={{ color: "green", fontWeight: "bold" }}>COMPLETED</p>
+    </div>
+    ) : !localStorage.getItem("rol")&&(
+    <Button
+      flex="1"
+      variant="ghost"
+      type="submit"
+      backgroundColor="blue.500"
+      color="white"
+      value={id}
+      onClick={clickHandlerDonate}
+      _hover={{ backgroundColor: "green.500" }}
+    >
+      Donar
+    </Button>
+  )  }
+</CardFooter>
+
+
       </Card>
     </div>
   );
