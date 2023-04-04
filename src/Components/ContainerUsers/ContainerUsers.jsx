@@ -43,9 +43,8 @@ export default function ContainerUsers({ data, render}) {
               <p>Name: {elem.user_name}</p>
               <p>Lastname: {elem.user_lastname}</p>
               <p>Email: {elem.user_email}</p>
-              <p>Status: {elem.deleted? "true": "false"}</p>
-              <Button onClick={()=>ban(elem.id)}>Ban</Button>
-              <Button onClick={()=>unBan(elem.id)}>unBan</Button>
+              <p>Status: {elem.deleted}</p>
+              {elem.deleted?<Button onClick={()=>unBan(elem.id)}>unBan</Button>:<Button onClick={()=>ban(elem.id)}>Ban</Button>}
               <br />
               <hr />
             </>
