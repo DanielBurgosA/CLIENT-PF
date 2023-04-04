@@ -101,7 +101,12 @@ export default function ProjectCard(props) {
   }}
   margin="5px"
 >
-  {!completed && !localStorage.getItem("rol")?  (
+
+  {completed ?  (
+    <div style={{ marginLeft: "75px" }}>
+      <p style={{ color: "green", fontWeight: "bold" }}>COMPLETED</p>
+    </div>
+    ) : !localStorage.getItem("rol")&&(
     <Button
       flex="1"
       variant="ghost"
@@ -114,11 +119,7 @@ export default function ProjectCard(props) {
     >
       Donar
     </Button>
-  ) : (
-    <div style={{ marginLeft: "75px" }}>
-      <p style={{ color: "green", fontWeight: "bold" }}>COMPLETED</p>
-    </div>
-  )}
+  )  }
 </CardFooter>
 
 
