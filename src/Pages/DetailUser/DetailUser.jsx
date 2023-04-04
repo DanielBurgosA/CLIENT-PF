@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 export default function DetailUser (){
     
     const { name } = useParams();
+    
 
     return(
         <div className={style.Prov}>
