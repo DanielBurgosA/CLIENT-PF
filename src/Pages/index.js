@@ -13,4 +13,5 @@ import ExecutePayment from "./Payment/ExecutePayment";
 
 //Este archivo exporta todos las pages con {} para hacer más facil su import
 //ejem import {DetailUser} from "./Pages" (VS eentra automaticamente a index)
+
 export {AboutUs, DetailProject,DetailUser,FormProjects,Home,LogIn,Pagos,Projects,Validation, UserForm, CancelPayment, ExecutePayment}
