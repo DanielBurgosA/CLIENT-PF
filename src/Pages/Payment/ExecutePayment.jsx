@@ -1,5 +1,6 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Swal from 'sweetalert2/src/sweetalert2.js';
+import Home from "../../Pages/Home/Home"
 
 export default function ExecutePayment() {
   const handleClick = () => {
@@ -12,19 +13,11 @@ export default function ExecutePayment() {
     });
   };
   return (
-    <Box
-      bg="#6e94c2"
-      p={6}
-      borderRadius="md"
-      boxShadow="md"
-      textAlign="center"
-    >
-      <Heading as="h1" size="lg" color="white">
-        Payment was successful
-      </Heading>
+    <Box>
+      <Home></Home>
       <Box>
       {handleClick()}
       </Box>
     </Box>
   );
-}
+} 

@@ -1,12 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import Cookie from "js-cookie";
 
 
 const initialState = {
     status: localStorage.getItem("value") ? true : false,
     user: {},
 }
+
+// export const banvalidation = createAsyncThunk(
+//     "LogIn/banValidation",
+//     async () => {
+//         axios.interceptors.request.use((req) => {
+//             const token = localStorage.getItem("value");
+//             req.headers.authorization = `Bearer ${token}`;
+//             return req;
+//         });
+//         console.log("lo estoy intentando");
+//         try {
+//             const verify = await axios.get(`/banValidation`);
+//             console.log("si es valido")
+//             return verify.data;
+//         } catch (error) {
+//             console.log("no es valido")
+//         }
+//     });
 
 export const userLogIn = createAsyncThunk(
     "LogIn/postUserLogIn",
@@ -16,7 +33,7 @@ export const userLogIn = createAsyncThunk(
             console.log(verify.data)
             return verify.data;
         } catch (error) {
-            console.log(error)
+            throw Error
         }
     });
 
@@ -35,6 +52,7 @@ export const logOutGoogle = createAsyncThunk(
     "logOut/getLogOutGoogle",
     async () => {
         try {
+            console.log("logOutGoogle");
             const res = await axios.get("/logOut/google")
 
             return res.data
@@ -45,15 +63,23 @@ export const logOutGoogle = createAsyncThunk(
 
 )
 
-export const getUser = createAsyncThunk("userDashboard/getUser", async () => {
+export const getUser = createAsyncThunk("userDashboard/getUser", async (obj, {dispatch, getState, rejectWithValue, fulfillWithValue}) => {
     axios.interceptors.request.use((req) => {
         const token = localStorage.getItem("value");
         req.headers.authorization = `Bearer ${token}`;
         return req;
     });
-    const res = await axios.get(`/user`);
-
-    return res.data;
+    try{
+        const res = await axios.get(`/user`);
+        return res.data;
+    }catch(err){
+        console.log("No pude");
+        const origin = localStorage.getItem("origin")
+        console.log(origin);
+        if(origin === "local") dispatch(logOutLocal());
+        else await dispatch(logOutGoogle());
+    }
+    
 });
 
 const logInSlicer = createSlice({
@@ -61,7 +87,6 @@ const logInSlicer = createSlice({
     initialState,
     reducers: {
         logOutLocal(state) {
-
             localStorage.removeItem("value");
             localStorage.removeItem("origin");
             localStorage.removeItem("rol");
@@ -107,8 +132,14 @@ const logInSlicer = createSlice({
             .addCase(getUser.fulfilled, (state, action) => {
                 
                 state.user = action.payload;
-                
             })
+
+
+            // .addCase(banvalidation.rejected, (state, action) =>{
+            //     const origin = localStorage.getItem("origin");
+            //     if(origin === "local") logOutLocal();
+            //     else logOutGoogle()      
+            // })
     }
 
 
