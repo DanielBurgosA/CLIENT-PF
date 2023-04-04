@@ -101,7 +101,7 @@ export default function ProjectCard(props) {
           }}
           margin="5px"
         >
-          {completed?<p>COMPLETED</p> : <Button flex="1"
+          {completed?<p>COMPLETED</p> :!localStorage.getItem("rol")&&<Button flex="1"
             variant="ghost"
             type="submit"
             backgroundColor="blue.500"
