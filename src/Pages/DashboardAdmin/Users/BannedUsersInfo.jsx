@@ -8,24 +8,15 @@ export default function BannedUsersInfo() {
     
     let bannedUsers = useSelector((state) => state.dashBoardAdmin.BadUsers);
 
-    const [render, setRender] = useState(0);
+    
 
-    console.log(render)
-
-    const onRender = () => {
-        setRender(render + 1)
-    }
 
     useEffect(() => {
         
         dispatch(getUsers());
-        
-        return () => {
-            bannedUsers = []
-        }
-       
-    }, [dispatch, render]);
+    
+    }, [dispatch]);
     return (
-       <ContainerUsers data={ bannedUsers } render={ onRender }></ContainerUsers>
+       <ContainerUsers data={ bannedUsers } ></ContainerUsers>
     )
 }

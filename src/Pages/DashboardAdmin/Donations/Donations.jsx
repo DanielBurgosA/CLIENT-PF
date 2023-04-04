@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 
 export default function Donations() {
-  const donations = useSelector((state) => state.dashBoardAdmin.AllDonation)
+  const donations = useSelector((state) => state.dashBoardAdmin.AllDonation);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +27,6 @@ export default function Donations() {
     
       <TableContainer>
         <Table variant='simple'>
-          <TableCaption>Imperial to metric conversion factors</TableCaption>
           <Thead>
             <Tr>
               <Th>Username</Th>
@@ -36,11 +35,11 @@ export default function Donations() {
 
             </Tr>
           </Thead>
-          {donations.map(donation => {
+          {donations?.map(donation => {
             return (
               <Tr>
                 <Td>{donation.user.user_name}</Td>
-                <Td>{donation.projectId}</Td>
+                <Td>{donation.project.name}</Td>
                 <Td isNumeric>{donation.monto}</Td>
               </Tr>
             )

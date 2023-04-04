@@ -83,6 +83,7 @@ const adminDashboardSlicer = createSlice({
     builder
 
       .addCase(getProject.fulfilled, (state, action) => {
+        
         state.AllProjects = [...action.payload];
         if (state.AllProjects.length > 0) {
           const TodosProyectos = state.AllProjects;
