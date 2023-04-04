@@ -3,54 +3,78 @@ import { useDispatch } from "react-redux";
 import { changeBanStatus } from "../../Redux/Slicers/AdminDashboard";
 import { useState, useEffect } from "react";
 import { getUsers } from "../../Redux/Slicers/AdminDashboard";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from '@chakra-ui/react'
 
-export default function ContainerUsers({ data, render}) {
-    const dispatch = useDispatch();
+export default function ContainerUsers({ data, render }) {
+  const dispatch = useDispatch();
 
-    const ban = async (id) => {
-      const data = {id: id, status: "ban" };
-      const a =  await dispatch(changeBanStatus(data));
-      console.log(a.meta?.requestStatus)
-      //render();
-      console.log(a)
-      if (a.meta?.requestStatus === "fulfilled"){
-        console.log("hola")
-        dispatch(getUsers());
-      }
+  const ban = async (id) => {
+    const data = { id: id, status: "ban" };
+    const a = await dispatch(changeBanStatus(data));
+    console.log(a.meta?.requestStatus)
+    //render();
+    console.log(a)
+    if (a.meta?.requestStatus === "fulfilled") {
+      console.log("hola")
+      dispatch(getUsers());
     }
-
-    const unBan = async (id) => {
-      const data = {id: id, status: "unBan" };
-      dispatch(changeBanStatus(data));
-      console.log(data)
-      const a = await dispatch(changeBanStatus(data));
-      console.log(a.meta?.requestStatus)
-      //render();
-      console.log(a)
-      if (a.meta?.requestStatus === "fulfilled"){
-        console.log("hola")
-        dispatch(getUsers());
-      }
-    }
-    
-    
-
-    return (
-      <>
-        {data.map((elem) => {
-          return (
-            <>
-              <p>Name: {elem.user_name}</p>
-              <p>Lastname: {elem.user_lastname}</p>
-              <p>Email: {elem.user_email}</p>
-              <p>Status: {elem.deleted}</p>
-              {elem.deleted?<Button onClick={()=>unBan(elem.id)}>unBan</Button>:<Button onClick={()=>ban(elem.id)}>Ban</Button>}
-              <br />
-              <hr />
-            </>
-          );
-        })}
-      </>
-    );
   }
-  
+
+  const unBan = async (id) => {
+    const data = { id: id, status: "unBan" };
+    dispatch(changeBanStatus(data));
+    console.log(data)
+    const a = await dispatch(changeBanStatus(data));
+    console.log(a.meta?.requestStatus)
+    //render();
+    console.log(a)
+    if (a.meta?.requestStatus === "fulfilled") {
+      console.log("hola")
+      dispatch(getUsers());
+    }
+  }
+
+
+
+  return (
+    <>
+      <TableContainer>
+        <Table variant='simple' size="sm" w="sm">
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th>Lastname</Th>
+              <Th>Email</Th>
+              <Th>Status</Th>
+              {data[0]?.deleted ? <Th>Ban</Th> : <Th>Un ban</Th>}
+
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data?.map(user => {
+              return (
+                <Tr>
+                  <Td>{user.user_name}</Td>
+                  <Td>{user.user_lastname}</Td>
+                  <Td>{user.user_email}</Td>
+                  <Td>{user.deleted? "Banned": "Active"}</Td>
+                  <Td>{user.deleted ? <Button onClick={() => unBan(user.id)}>unBan</Button> : <Button onClick={() => ban(user.id)}>Ban</Button>}</Td>
+                </Tr>
+              )
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </>
+  );
+}
