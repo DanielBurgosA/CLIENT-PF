@@ -62,7 +62,6 @@ const logInSlicer = createSlice({
                     localStorage.setItem("value", action.payload.token);
                     localStorage.setItem("origin", action.payload.origin);
                     action.payload.rol&&localStorage.setItem("rol", action.payload.rol);
-                    console.log(action.payload.rol);
                     state.status = true;
                 }else{
                     state.status = false;
