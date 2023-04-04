@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 
 import { useDispatch, useSelector } from "react-redux";
+import defaultImage from "../../../Utils/image/276-2761324_default-avatar-png.png";
 
 
 export default function UserProfile() {
@@ -34,7 +35,7 @@ export default function UserProfile() {
                         objectFit="cover"
                         boxSize="100%"
                         src={
-                            'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
+                            user.user_image? user.user_image: defaultImage
                         }
                     />
                 </Flex>

@@ -12,7 +12,7 @@ export default function NavBar() {
   const location = useLocation();
 
   const LogInStatus = useSelector((state) => state.login.status);
-  console.log(LogInStatus);
+  
 
   return (
     <div className={style.navBar}>
@@ -30,7 +30,7 @@ export default function NavBar() {
 
               {LogInStatus && location.pathname !== "/pagos" &&<LogOutButton className={style.underline} />}
 
-             { LogInStatus && <a href="/profile">
+             { LogInStatus && <a href="/profile/userInfo">
                 <Button colorScheme="teal" variant="solid" marginRight="1rem">
                   Profile
                 </Button>
