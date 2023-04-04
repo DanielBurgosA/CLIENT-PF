@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   getProjectById,
   provGetId,
@@ -27,6 +27,7 @@ import CommentsProjectById from "../../Components/CommentsByIds/CommentsProjectB
 export default function DetailProject() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const LogInStatus = useSelector((state) => state.login.status);
 
@@ -38,7 +39,14 @@ export default function DetailProject() {
   }, [dispatch, id]);
 
   let projectById = useSelector((state) => state.project.projectId);
-  console.log('projectById :>> ', projectById);
+  
+    const clickHandlerDonate = (e) => {
+    if (LogInStatus) {
+      navigate(`/pagos?id=${id}`);
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <Box>
@@ -68,12 +76,18 @@ export default function DetailProject() {
               fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
               {projectById.name}
             </Heading>
-            <Text
-              color={useColorModeValue('gray.900', 'gray.400')}
-              fontWeight={300}
-              fontSize={'2xl'}>
-            ${projectById.currentAmount} / ${projectById.cost}
-            </Text>
+          <Box  m="0.5rem">
+         <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight={600}
+              fontSize={'2xl'} > Raised money: ${projectById.currentAmount} 
+        </Text>
+        
+
+        <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight={600}
+              fontSize={'2xl'} > Total to collect: ${projectById.cost}
+        </Text>
+        </Box>
           </Box>
 
           <Stack
@@ -86,7 +100,7 @@ export default function DetailProject() {
             }>
             <VStack spacing={{ base: 4, sm: 6 }}>
               <Text
-                color={useColorModeValue('gray.500', 'gray.400')}
+                color={useColorModeValue('black.500', 'gray.400')}
                 fontSize={'2xl'}
                 fontWeight={'300'}>
                 Descripción
@@ -105,11 +119,12 @@ export default function DetailProject() {
             bg={useColorModeValue('gray.900', 'gray.50')}
             color={useColorModeValue('white', 'gray.900')}
             textTransform={'uppercase'}
+            onClick={clickHandlerDonate}
             _hover={{
               transform: 'translateY(2px)',
               boxShadow: 'lg',
             }}>
-            Add to cart
+            Donate
           </Button>
         </Stack>
       </SimpleGrid>
