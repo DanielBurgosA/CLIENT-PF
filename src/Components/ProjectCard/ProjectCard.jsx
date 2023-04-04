@@ -46,18 +46,21 @@ export default function ProjectCard(props) {
         minHeight="450px"
       >
         <CardHeader maxHeight="80px">
-          <Flex spacing="4">
-            <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Link to={`/user/${user}`}>
-                <Avatar name={user} src="https://bit.ly/sage-adebayo" />
-              </Link>
-              <Box>
-                <Text>{name}</Text>
-                <Text>{location}</Text>
-              </Box>
-            </Flex>
+          <Flex spacing="4" alignItems="center">
+            <Link to={`/user/${user}`}>
+              <Avatar name={user} src="https://bit.ly/sage-adebayo" />
+            </Link>
+            <Box>
+              <Text fontWeight="bold" fontSize="sm">{name}</Text>
+              <Text fontSize="sm">{location}</Text>
+            </Box>
           </Flex>
         </CardHeader>
+
+        <Center>
+        <Text fontSize="sm" mt="4">{`Amount: ${currentAmount} / ${cost}`}</Text>
+        </Center>
+
         <Link to={`/projects/${id}`} key={id}>
           <CardBody maxHeight="80px">
             <Text>{abstrac}</Text>
@@ -72,6 +75,7 @@ export default function ProjectCard(props) {
               minHeight="200px"
             />
           </Center>
+          
         </Link>
         <CardFooter
           justify="space-between"
@@ -84,7 +88,14 @@ export default function ProjectCard(props) {
           }}
           margin="5px"
         >
-          {completed?<p>COMPLETED</p> : <Button flex="1" variant="ghost" onClick={clickHandlerDonate}>
+          {completed?<p>COMPLETED</p> : <Button flex="1"
+            variant="ghost"
+            type="submit"
+            backgroundColor="blue.500"
+            color="white"
+            value={id}
+            onClick={clickHandlerDonate}
+            _hover={{ backgroundColor: "green.500" }} >
             Donar
           </Button>}
 
@@ -92,8 +103,11 @@ export default function ProjectCard(props) {
             flex="1"
             variant="ghost"
             type="submit"
+            backgroundColor="blue.500"
+            color="white"
             value={id}
             onClick={clickHandlerSeeLater}
+            _hover={{ backgroundColor: "green.500" }}
           >
             See later
           </Button>
@@ -102,3 +116,5 @@ export default function ProjectCard(props) {
     </div>
   );
 }
+
+
