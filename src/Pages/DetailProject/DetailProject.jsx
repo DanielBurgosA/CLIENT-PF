@@ -25,6 +25,7 @@ import AddComment from "../../Components/CreateComment/CreateComment.jsx";
 import CommentsProjectById from "../../Components/CommentsByIds/CommentsProjectById";
 
 export default function DetailProject() {
+  //const { colorMode, toggleColorMode } = useColorMode();
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();

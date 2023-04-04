@@ -1,7 +1,15 @@
+import UserDonationAbs from "./UserDonationAbs"
+import UserProfile from "./UserProfile"
+import UserProject from "./UserProject"
 export default function UserInfo() {
   return (
     <>
-      <div>userInfo</div>
+      <UserProfile></UserProfile>
+      <UserProject></UserProject>
+      <UserDonationAbs></UserDonationAbs>
     </>
-  );
+  )
 }
+
+
+
