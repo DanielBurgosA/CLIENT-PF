@@ -13,6 +13,8 @@ import {
   Button,
   Center,
   Input,
+  useColorModeValue,
+
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,9 +43,9 @@ export default function ProjectCard(props) {
       <Card
         maxW="md"
         maxWidth="300px"
-        maxHeight="450px"
+        maxHeight="470px"
         minWidth="300px"
-        minHeight="450px"
+        minHeight="470px"
       >
         <CardHeader maxHeight="80px">
           <Flex spacing="4" alignItems="center">
@@ -56,23 +58,34 @@ export default function ProjectCard(props) {
             </Box>
           </Flex>
         </CardHeader>
+        
+        <Box  m="0.5rem">
+         <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight="bolt"
+              fontSize={'1xl'} > Raised money: ${currentAmount} 
+        </Text>
+        
 
-        <Center>
-        <Text fontSize="sm" mt="4">{`Amount: ${currentAmount} / ${cost}`}</Text>
-        </Center>
+        <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight="bolt"
+              fontSize={'1xl'} > Total to collect: ${cost}
+        </Text>
+        </Box>
 
         <Link to={`/projects/${id}`} key={id}>
           <CardBody maxHeight="80px">
             <Text>{abstrac}</Text>
           </CardBody>
           <Center>
-            <Image
-              objectFit="cover"
-              src={image}
-              alt={name}
-              margin="5px"
-              maxHeight="200px"
-              minHeight="200px"
+          <Image
+            objectFit="cover"
+            src={image}
+            alt={name}
+            margin="1px"
+            maxHeight="200px"
+            minHeight="200px"
+            maxWidth="300px"
+            minWidth="300px"
             />
           </Center>
           
