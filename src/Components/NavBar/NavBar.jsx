@@ -28,7 +28,7 @@ export default function NavBar() {
             <Flex alignItems="center">
               <Spacer></Spacer>
 
-              {LogInStatus && <LogOutButton className={style.underline} />}
+              {LogInStatus && location.pathname !== "/pagos" &&<LogOutButton className={style.underline} />}
 
              { LogInStatus && <a href="/profile">
                 <Button colorScheme="teal" variant="solid" marginRight="1rem">

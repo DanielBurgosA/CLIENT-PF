@@ -6,11 +6,17 @@ import { useLocation } from "react-router-dom";
 import { cleanLink, linkPaymentPlatform } from "../../Redux/Slicers/paymentSlicer";
 import { provGetIdPago, cleanIdPago } from "../../Redux/Slicers/projectSlicer";
 import {
+  Flex,
+  Box,
   FormControl,
   FormLabel,
-  Button,
   Input,
-  Flex,
+  Stack,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 
 export default function Pagos() {
@@ -48,7 +54,6 @@ export default function Pagos() {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-
   const handleChange = (e) =>{
     setForm({...form, amount : e.target.value})
   }
@@ -59,19 +64,58 @@ export default function Pagos() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(Submit)}>
-                    <h1>{`gracias por donar a ${projectById.name}`}</h1>
-                    <h2>{`faltan ${max} dolares para alcanzar nuestra meta`}</h2>
-                    <FormControl>
-                        <FormLabel>Amount to donate</FormLabel>
-                        <Input type="number" placeholder="enter the amount you want to donate (in dollars)" {...register('donation')} value={form.amount} onChange={handleChange} min={5} max={max}/>
-                    </FormControl>
 
-                    <Flex>
-                    <Button type="submit" className={style.button}>Realizar donacion con PayPal</Button>
-                    </Flex>
-            </form>
-    </div>
+    <form onSubmit={handleSubmit(Submit)}>
+            <Flex
+            minH={'100vh'}
+            align={'center'}
+            justify={'center'}
+            bg={useColorModeValue('gray.50', 'gray.800')}>
+                <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+                    <Stack align={'center'}>
+                        <Heading fontSize={'4xl'}>{`Donation to ${projectById.name}`}</Heading>
+                        <Text fontSize={'lg'} color={'gray.600'}>
+                          {`we need ${max} dolares to reach our goal`}
+                        </Text>
+                    </Stack>
+                    <Box
+                    rounded={'lg'}
+                    bg={useColorModeValue('white', 'gray.700')}
+                    boxShadow={'lg'}
+                    p={8}>
+                    <Stack spacing={4}>
+                        <FormControl id="email" isInvalid={errors.user_email ? true : false}>
+                            <FormLabel>Amount to donate</FormLabel>
+                            <Input type="number" placeholder="enter the amount you want to donate (in dollars)" {...register('donation')} value={form.amount} onChange={handleChange} min={5} max={max} />
+                            {!errors.user_email ? null : <FormErrorMessage>{errors.user_email?.message}</FormErrorMessage>}
+                        </FormControl>
+                        <Button
+                            type="submit"
+                            bg={'blue.400'}
+                            color={'white'}
+                            _hover={{
+                            bg: 'blue.500',
+                            }}>
+                            Donate with Paypal
+                        </Button>
+                    </Stack>
+                    </Box>
+                </Stack>
+            </Flex>
+        </form>
+    // <div>
+    //   <form onSubmit={handleSubmit(Submit)}>
+    //                 <h1>{`gracias por donar a ${projectById.name}`}</h1>
+    //                 <h2>{`faltan ${max} dolares para alcanzar nuestra meta`}</h2>
+    //                 <FormControl>
+    //                     <FormLabel>Amount to donate</FormLabel>
+    //                     <Input type="number" placeholder="enter the amount you want to donate (in dollars)" {...register('donation')} value={form.amount} onChange={handleChange} min={5} max={max}/>
+    //                 </FormControl>
+
+    //                 <Flex>
+    //                 <Button type="submit" className={style.button}>Realizar donacion con PayPal</Button>
+    //                 </Flex>
+    //         </form>
+    // </div>
   );
 }

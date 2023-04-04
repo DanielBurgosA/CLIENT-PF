@@ -15,6 +15,7 @@ import {
   VStack,
   Heading,
   Card,
+  Spinner
 } from "@chakra-ui/react";
 import style from "./DetailProject.module.css";
 import AddComment from "../../Components/CreateComment/CreateComment.jsx";
@@ -27,7 +28,7 @@ export default function DetailProject() {
   const LogInStatus = useSelector((state) => state.login.status);
 
   useEffect(() => {
-    dispatch(provGetId(id));
+    dispatch(getProjectById(id));
     return () => {
       dispatch(cleanId());
     };
@@ -79,7 +80,15 @@ export default function DetailProject() {
           </VStack>
         </Box>
       ) : (
-        <Text>Loading..</Text>
+        <Center height="25rem">
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+            </Center>
       )}
       <Box>
         <Link to="/projects">
