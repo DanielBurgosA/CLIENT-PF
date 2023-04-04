@@ -10,10 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 export default function SidebarUser() {
-  const usuario = useSelector((state) => state.dashBoardUser.user);
-  console.log("usuario", usuario);
-  const dispatch = useDispatch();
- 
+  
   return (
     <div className={style.sidebar}>
 

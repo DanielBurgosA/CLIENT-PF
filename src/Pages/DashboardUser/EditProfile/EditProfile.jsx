@@ -13,9 +13,34 @@ import {
     IconButton,
     Center,
 } from '@chakra-ui/react';
+
 import { SmallCloseIcon } from '@chakra-ui/icons';
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EditSchema } from "./errors";
+//quede en conectar todo
+
+
+ 
 
 export default function EditProfile() {
+    const user = useSelector(state => state.login.user)
+
+
+    const dispatch = useDispatch();
+
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(EditSchema)
+    })
+
+  
+
+    const Submit = (data) => {
+       
+    }
+
     return (
         <Flex
             minH={'100vh'}
@@ -35,7 +60,7 @@ export default function EditProfile() {
                     User Profile Edit
                 </Heading>
                 <FormControl id="userName">
-                    <FormLabel>User Icon</FormLabel>
+                    <FormLabel>{user.name}</FormLabel>
                     <Stack direction={['column', 'row']} spacing={6}>
                         <Center>
                             <Avatar size="xl" src="https://bit.ly/sage-adebayo">
@@ -55,18 +80,11 @@ export default function EditProfile() {
                         </Center>
                     </Stack>
                 </FormControl>
-                <FormControl id="userName" isRequired>
-                    <FormLabel>User name</FormLabel>
-                    <Input
-                        placeholder="UserName"
-                        _placeholder={{ color: 'gray.500' }}
-                        type="text"
-                    />
-                </FormControl>
+
                 <FormControl id="email" isRequired>
                     <FormLabel>Email address</FormLabel>
                     <Input
-                        placeholder="your-email@example.com"
+                        placeholder={user.email}
                         _placeholder={{ color: 'gray.500' }}
                         type="email"
                     />

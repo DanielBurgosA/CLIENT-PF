@@ -65,7 +65,7 @@ export default function Profile() {
             <Routes>
               <Route exact path="projectsUser" element={<ProjectsUser />} />
               <Route exact path="donationHistory" element={<DonationUser />} />
-              <Route exact path="userInfo" element={<UserInfo />} />
+              <Route index exact path="userInfo" element={<UserInfo />} />
               <Route exact path="edit" element={<EditProfile/>}/>
             </Routes>
           )}

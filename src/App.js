@@ -39,7 +39,10 @@ function App() {
   useEffect(() => {
     dispatch(getProject());
     dispatch(getSeeLaterItem());
-    dispatch(getUser());
+    if(LogInStatus){
+      dispatch(getUser());
+    }
+    
   });
 
   return (
