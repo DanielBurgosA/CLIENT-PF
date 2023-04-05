@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import {
   FormControl,
   FormLabel,
@@ -56,7 +57,11 @@ export default function FormProjects() {
       data.image=img;
       dispatch(postProject(data))
       console.log(data);
-      alert("se creo proyecto")
+      Swal.fire({
+        icon: 'success',
+        title: 'Project submit successfully',
+        showConfirmButton: false,
+      })
       navigate("/projects");
     //}else{
      // SetErr("debes loguearte")
@@ -108,7 +113,7 @@ export default function FormProjects() {
             </FormControl>
 
             <FormControl isInvalid={errors.cost ? true : false}>
-              <FormLabel>cost</FormLabel>
+              <FormLabel>Cost</FormLabel>
               <Input
                 type="text"
                 placeholder="Share your project's address"
@@ -141,15 +146,15 @@ export default function FormProjects() {
             </FormControl>
 
             {img&&<img src={img} alt="project" width="200px" height="200px"  objectFit= "cover"/>}
-            <Button onClick={widgetOpen}>Imagen</Button>
+            <Button onClick={widgetOpen}>Image</Button>
 
             <Button type="submit" colorScheme="blue">
               {" "}
-              send{" "}
+              Send{" "}
             </Button>
           </VStack>
         </form>
-        {err ? <span>debes loguearte</span> : null}
+        {err ? <span>You must be logged in to post a project</span> : null}
       </Container>
     );
   

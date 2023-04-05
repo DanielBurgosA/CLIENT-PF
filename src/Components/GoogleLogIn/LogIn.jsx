@@ -16,7 +16,7 @@ export default function SignUp() {
       <a className="enlace" href="http://localhost:3001/auth/google">
         <Button >
           <ImGoogle color="#07588a" />
-          &nbsp;&nbsp;inicio de sesion con google
+          &nbsp;&nbsp;Sign in with Google
         </Button>
       </a>
     </div>

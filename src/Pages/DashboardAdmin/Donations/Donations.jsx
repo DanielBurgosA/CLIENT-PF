@@ -27,7 +27,7 @@ export default function Donations() {
             <Tr>
               <Th>Username</Th>
               <Th>Project</Th>
-              <Th isNumeric>Monto</Th>
+              <Th isNumeric>Amout</Th>
 
             </Tr>
           </Thead>
