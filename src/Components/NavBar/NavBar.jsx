@@ -9,11 +9,16 @@ import { useSelector } from "react-redux";
 import HamburgerMenu from "../HamburgerMenu/HamburguerMenu";
 import { useDispatch } from "react-redux"
 import { logOutLocal, logOutGoogle } from "../../Redux/Slicers/LogInOutSlicer";
+import { useNavigate } from 'react-router-dom';
+
+
 export default function NavBar() {
 
+  const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const user = useSelector(state => state.login.user)
   
   const onClickHandler = () => {
     const origin = localStorage.getItem("origin");
@@ -22,6 +27,7 @@ export default function NavBar() {
     }else{
       dispatch(logOutGoogle())
     }
+    navigate("/home");
   }
   const LogInStatus = useSelector((state) => state.login.status);
   return (
@@ -34,7 +40,7 @@ export default function NavBar() {
             <img src={image} width="70" height="70" />
               </a>
               <Spacer></Spacer>
-               {!LogInStatus && ( 
+               {LogInStatus && ( 
                 <>
                 <ToggleColorMode/>              
                 <Menu>
@@ -48,31 +54,31 @@ export default function NavBar() {
                   >
                   <Avatar
                     size={'md'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={user.image}
                   />
                  </MenuButton>
                  <MenuList alignItems={'center'}>
                   <br />
                   <Center>
                     <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      size={'xl'}
+                      src={user.image}
                     />
                   </Center>
                   <br />
                   <Center>
-                    <p>Username</p>
+                    <p>{`${user.name} ${user.lastname}`}</p>
                   </Center>
                   <br />
                   <MenuDivider />
                   <MenuItem><a href="/profile">Profile</a></MenuItem>
-                  <MenuItem onClick={onClickHandler}>Exit</MenuItem>
+                  {location.pathname !== "/pagos" && <MenuItem onClick={onClickHandler}>Exit</MenuItem>}
                 </MenuList>
               </Menu>
               </>)
               } 
 
-              {LogInStatus && (
+              {!LogInStatus && (
                 <a href="/create-user">
                   <Button
                     colorScheme="teal"
@@ -84,7 +90,7 @@ export default function NavBar() {
                 </a>
               )}
 
-              {LogInStatus && (
+              {!LogInStatus && (
                 <>
                 <a href="/login">
                   <Button colorScheme="teal" variant="solid" marginRight="1rem">

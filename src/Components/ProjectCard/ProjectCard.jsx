@@ -42,8 +42,8 @@ export default function ProjectCard(props) {
       >
         <CardHeader maxHeight="80px">
           <Flex spacing="4" alignItems="center">
-            <Link to={`/user/${user}`}>
-              <Avatar name={user} src="https://bit.ly/sage-adebayo" />
+            <Link to={`/user/${user.user_name}`}>
+              <Avatar name={user.user_name} src={user.user_image} />
             </Link>
             <Box>
               <Text fontWeight="bold" fontSize="sm">{name}</Text>

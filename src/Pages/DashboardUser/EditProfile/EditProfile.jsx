@@ -18,29 +18,54 @@ import { SmallCloseIcon } from '@chakra-ui/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { updateUser } from '../../../Redux/Slicers/UserDashboard';
+import { updateUser, uploadImage } from '../../../Redux/Slicers/UserDashboard';
 import { getUser } from "../../../Redux/Slicers/LogInOutSlicer";
 import EditEmail  from "./EditEmail/EditEmail"
 import EditPassword from "./EditPassword/EditPassword"
+import { useState, useEffect } from "react";
 
 
 
 export default function EditProfile() {
     const user = useSelector(state => state.login.user)
 
-    const origin = localStorage.getItem("origin")
+    const[img, setImg] = useState("");
+    var myWidget = window.cloudinary.createUploadWidget(
+        {
+          cloudName: "dipomzedf",
+          uploadPreset: "linkingfuture"
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            setImg(result.info.secure_url)
+            console.log("Done! Here is the image info: ", result.info);
+          }
+        }
+    );
 
     const dispatch = useDispatch();
+      
+    const widgetOpen = () => {
+        myWidget.open()
+    }
 
+    const origin = localStorage.getItem("origin")
+
+    useEffect(()=>{
+        if(img!=="")
+        dispatch(uploadImage(img))
+      },[img])
+    
     const CloseIconHandler = async () => {
-        const data = { image: null };
-        const res = await dispatch(updateUser(data));
+        const res = dispatch(uploadImage(null));
 
         if (res.meta.fulfilled === "fulfilled") {
             dispatch(getUser());
         }
 
     }
+    
+
 
     
 
@@ -63,7 +88,7 @@ export default function EditProfile() {
                     User Profile Edit
                 </Heading>
                 <FormControl id="userName">
-                    <FormLabel>{user.name}</FormLabel>
+                    <FormLabel>{`${user.name} ${user.lastname&&user.lastname}`}</FormLabel>
                     <Stack direction={['column', 'row']} spacing={6}>
                         <Center>
                             <Avatar size="xl" src={user.image}>
@@ -79,7 +104,7 @@ export default function EditProfile() {
                             </Avatar>
                         </Center>
                         <Center w="full">
-                            <Button w="full">Change Icon</Button >//cloudinary
+                            <Button w="full" onClick={widgetOpen}>Change Icon</Button >
                         </Center>
                     </Stack>
                 </FormControl>

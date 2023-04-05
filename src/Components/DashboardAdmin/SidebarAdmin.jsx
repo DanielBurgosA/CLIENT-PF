@@ -49,15 +49,18 @@ export default function SidebarAdmin() {
             Comments <ChevronDownIcon />
           </MenuButton>
           <MenuList>
-            <MenuItem>
-              <Link to="/profile/userComments/banned">Banned</Link>
-
-            </MenuItem>
+            <Link to="/profile/userComments/banned">
+                <MenuItem>
+                  Banned
+                </MenuItem>
+              </Link>
             <MenuDivider />
-            <MenuItem>
+            <Link to="/profile/userComments/active">
+              <MenuItem>
               {" "}
-              <Link to="/profile/userComments/active">Active</Link>
-            </MenuItem>
+                Active
+              </MenuItem>
+            </Link>
             <MenuDivider />
           </MenuList>
         </Menu>
@@ -77,24 +80,32 @@ export default function SidebarAdmin() {
             Projects <ChevronDownIcon />
           </MenuButton>
           <MenuList>
+          <Link to="/profile/projectsApproved">
             <MenuItem>
-              <Link to="/profile/projectsApproved">Approved</Link>
+              Approved
             </MenuItem>
+            </Link>
             <MenuDivider />
+            <Link to="/profile/projectsPending">
+              <MenuItem>
+              {" "}
+              Pending
+            </MenuItem>
+            </Link>
+            <MenuDivider />
+            <Link to="/profile/projectsCompleted">
             <MenuItem>
               {" "}
-              <Link to="/profile/projectsPending">Pending</Link>
+              Completed
             </MenuItem>
+            </Link>
             <MenuDivider />
+            <Link to="/profile/projectsRejected">
             <MenuItem>
               {" "}
-              <Link to="/profile/projectsCompleted">Completed</Link>
+              Rejected
             </MenuItem>
-            <MenuDivider />
-            <MenuItem>
-              {" "}
-              <Link to="/profile/projectsRejected">Rejected</Link>
-            </MenuItem>
+            </Link>
           </MenuList>
         </Menu>
 
@@ -113,15 +124,18 @@ export default function SidebarAdmin() {
             Users <ChevronDownIcon />
           </MenuButton>
           <MenuList>
+          <Link to="/profile/activeUsers">
             <MenuItem>
-              <Link to="/profile/activeUsers">Active</Link>
-
+              Active
             </MenuItem>
+            </Link>
             <MenuDivider />
+            <Link to="/profile/bannedUsers">
             <MenuItem>
               {" "}
-              <Link to="/profile/bannedUsers">Banned</Link>
+              Banned
             </MenuItem>
+            </Link>
             <MenuDivider />
           </MenuList>
         </Menu>
