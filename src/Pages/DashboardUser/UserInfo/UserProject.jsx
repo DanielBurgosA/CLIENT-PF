@@ -128,7 +128,7 @@ export default function UserProfile() {
                     </Box>
                 ))
                     :
-                    cards.map((card, index) => (
+                    projects?.map((card, index) => (
                         <Box
                             key={index}
                             height={'sm'}

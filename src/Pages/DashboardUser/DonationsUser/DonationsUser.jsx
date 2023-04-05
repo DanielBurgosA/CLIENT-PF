@@ -29,7 +29,7 @@ export default function DonationUser() {
 
   return (
     <>
-      {userDonations?.length > 1 ?
+      {userDonations?.length >= 1 ?
         <Center>
           <TableContainer>
             <Table variant='simple' size="sm" w="sm" m="0.5em">

@@ -119,7 +119,7 @@ export default function NavBar() {
                   </Link>
                 )}
                 {location.pathname !== "/create" && (
-                  <Link to={"/create"}>
+                  <Link to={LogInStatus? "/create" : "/login"}>
                     {" "}
                     <span className={style.underline}>Create Project</span>{" "}
                   </Link>

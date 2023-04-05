@@ -81,12 +81,18 @@ export default function ContainerAdmin({ data }) {
 
                   {data[0]?.status === "wait approval" ?
                     <Td>
-                      <Select placeholder='Select option' onChange={(event) => click(event, elem.id)}>
+                      {/* <Select placeholder='Select option' onChange={(event) => click(event, elem.id)}>
                         <option selected>--select an option</option>
                         <option value='approve'>Approve</option>
                         <option value='reject'>Reject</option>
                         
-                      </Select>
+                      </Select> */}
+                      <Button m="1" value="approve" onClick = { (event) => click(event, elem.id)}>
+                        Approve
+                      </Button>
+                      <Button value="reject" onClick = { (event) => click(event, elem.id)}>
+                        Reject
+                      </Button>
                     </Td> : null}
                   {/* <FormControl display='flex' alignItems='center'>
                       <FormLabel htmlFor='email-alerts' mb='0'>

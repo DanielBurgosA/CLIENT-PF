@@ -16,7 +16,7 @@ const CommentsProjectById = () => {
   return (
     <div>
       {comentarios.map((c) => {
-        return <CardComments key={c.id} comment={c.comment} createdAt={c.createdAt.slice(0, 10)} />;
+        return !c.deleted&&<CardComments key={c.id} comment={c.comment} createdAt={c.createdAt.slice(0, 10)} />;
       })}
     </div>
   );

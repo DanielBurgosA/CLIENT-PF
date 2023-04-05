@@ -36,7 +36,7 @@ export default function UserProfile() {
           objectFit="cover"
           boxSize="100%"
           src={
-            user.user_image ? user.user_image : defaultImage
+            user.image ? user.image : defaultImage
           }
         />
       </Flex>

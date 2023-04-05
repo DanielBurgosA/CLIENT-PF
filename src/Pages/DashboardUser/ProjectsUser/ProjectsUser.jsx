@@ -27,7 +27,7 @@ export default function ProjectsUser() {
   }, [dispatch])
   return (
     <>
-      {userProjects?.length > 1 ?
+      {userProjects?.length >= 1 ?
         <Center>
           <TableContainer>
             <Table variant='simple' size="sm" w="sm" m="0.5em">
