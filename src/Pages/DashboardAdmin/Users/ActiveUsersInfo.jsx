@@ -9,22 +9,16 @@ export default function ActiveUsersInfo() {
     let activeUsers = useSelector((state) => state.dashBoardAdmin.GoodUsers);
 
 
-    const [render, setRender] = useState(0);
-
-    const onRender = () => {
-        setRender(render + 1);
-    }
-
     useEffect(() => {
         dispatch(getUsers());
         return () =>{
             activeUsers = []
         }
-    }, [dispatch, render]);
+    }, [dispatch]);
 
     return (
 
-        <ContainerUsers data={activeUsers} render={onRender}></ContainerUsers>
+        <ContainerUsers data={activeUsers} ></ContainerUsers>
 
     )
 }

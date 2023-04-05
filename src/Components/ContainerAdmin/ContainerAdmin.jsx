@@ -19,6 +19,7 @@ import {
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { changeProjectStatus } from '../../Redux/Slicers/AdminDashboard';
+import { getProject } from '../../Redux/Slicers/AdminDashboard';
 
 export default function ContainerAdmin({ data }) {
 
@@ -26,18 +27,28 @@ export default function ContainerAdmin({ data }) {
   const dispatch = useDispatch();
 
 
-  const click = (event, id) => {
+  const click = async (event, id) => {
     
     if (event.target.value === "approve") {
      
       const data = { id: id, status: "approved" }
 
-      dispatch(changeProjectStatus(data));
+      const res = await dispatch(changeProjectStatus(data));
+
+      if (res.meta?.requestStatus === "fulfilled") {
+        console.log("hola")
+        dispatch(getProject());
+      }
     }
 
     if (event.target.value === "reject") {
       const data = { id: id, status: "rejected" };
-      dispatch(changeProjectStatus(data));
+      const res = await dispatch(changeProjectStatus(data));
+
+      if (res.meta?.requestStatus === "fulfilled") {
+        console.log("hola")
+        dispatch(getProject());
+      }
     }
 
   }
@@ -71,6 +82,7 @@ export default function ContainerAdmin({ data }) {
                   {data[0]?.status === "wait approval" ?
                     <Td>
                       <Select placeholder='Select option' onChange={(event) => click(event, elem.id)}>
+                        <option selected>--select an option</option>
                         <option value='approve'>Approve</option>
                         <option value='reject'>Reject</option>
                         
