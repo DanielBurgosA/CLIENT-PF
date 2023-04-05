@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text, Spinner, Center } from "@chakra-ui/react";
 import SearchBar from "../SearchBar/SearchBar";
 
 //import de componentes
@@ -22,7 +22,6 @@ export default function Page({ projects }) {
   const page = (pagNum) => {
     setcurrentPage(pagNum);
   };
-
   //logica ordenamiento para pasarle al componente filter en que orden filtrar todo;
   const [order, setOrder] = useState("none");
   const ord = (order) => {
@@ -55,10 +54,18 @@ export default function Page({ projects }) {
         <br />
         <br />
         <div>
-          {projects.length ? (
+          {projects.length >0 ? (  
             <CardContainer currentProjects={currentProjects} />
           ) : (
-            <NoResult />
+            <Center height="25rem">
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+            </Center>
           )}
         </div>
         <br />

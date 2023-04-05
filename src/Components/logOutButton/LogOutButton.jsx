@@ -16,6 +16,6 @@ export default function LogOutButton (){
     }
 
     return (
-        <Button onClick={onClickHandler}>Log out</Button>
+        <Button onClick={onClickHandler}>Exit</Button>
     )
 }

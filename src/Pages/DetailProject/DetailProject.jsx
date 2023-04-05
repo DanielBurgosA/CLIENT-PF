@@ -1,9 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import {
   getProjectById,
-  provGetId,
   cleanId,
 } from "../../Redux/Slicers/projectSlicer";
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -22,16 +22,15 @@ import AddComment from "../../Components/CreateComment/CreateComment.jsx";
 export default function DetailProject() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  let projectById = useSelector((state) => state.project.projectId);
 
   useEffect(() => {
-    dispatch(provGetId(id));
+    dispatch(getProjectById(id));
     return () => {
       dispatch(cleanId());
     };
   }, [dispatch, id]);
-  
-  let projectById = useSelector((state) => state.project.projectId);
-  
+
   return (
     <Box maxH="1.5">
       {projectById && Object.keys(projectById) ? (
