@@ -84,16 +84,16 @@ export default function ProjectCard(props) {
           
         </Link>
         <CardFooter
-  justify="space-between"
-  flexWrap="wrap"
-  maxHeight="50px"
-  sx={{
-    "& > button": {
-      minW: "50px",
-    },
-  }}
-  margin="5px"
->
+          justify="space-between"
+          flexWrap="wrap"
+          maxHeight="50px"
+          sx={{
+                "& > button": {
+                minW: "50px",
+                },
+                }}
+          margin="5px"
+        >
 
   {completed ?  (
     <div style={{ marginLeft: "75px" }}>
@@ -110,7 +110,7 @@ export default function ProjectCard(props) {
       onClick={clickHandlerDonate}
       _hover={{ backgroundColor: "green.500" }}
     >
-      Donar
+      Donate
     </Button>
   )  }
 </CardFooter>

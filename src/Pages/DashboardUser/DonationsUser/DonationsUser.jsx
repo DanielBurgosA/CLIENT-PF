@@ -29,7 +29,7 @@ export default function DonationUser() {
         <Thead>
           <Tr>
             <Th>Project</Th>
-            <Th isNumeric>Monto</Th>
+            <Th isNumeric>Amount</Th>
             <Th>Currency</Th>
           </Tr>
         </Thead>

@@ -104,7 +104,7 @@ export default function DetailProject() {
                 color={useColorModeValue('black.500', 'gray.400')}
                 fontSize={'2xl'}
                 fontWeight={'300'}>
-                Descripción
+                Description
               </Text>
               <Text fontSize={'lg'}>
                 {projectById.description}
