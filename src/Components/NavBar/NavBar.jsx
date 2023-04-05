@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-
 import { Box, Flex, Grid, GridItem, Spacer, Button } from "@chakra-ui/react";
 import ToggleColorMode from "../../modeColor/toggleColorMode";
 import image from "../../Utils/image/2.jpg";
@@ -19,7 +18,7 @@ export default function NavBar() {
       <Grid templateColumns="repeat(12, 1fr)" gap={2}>
         <GridItem as="aside" colSpan={3} p="40px">
           <a href="/home">
-            <img src={image} width="70" height="70" />
+            <img src={image} width="70" height="70" alt = "navBar" />
           </a>
         </GridItem>
 
@@ -47,6 +46,7 @@ export default function NavBar() {
                   </Button>
                 </a>
               )}
+              
 
               {!LogInStatus && (
                 <a href="/login">
@@ -75,7 +75,7 @@ export default function NavBar() {
                   </Link>
                 )}
                 {location.pathname !== "/create" && (
-                  <Link to={"/create"}>
+                  <Link to={LogInStatus? "/create" : "/login"}>
                     {" "}
                     <span className={style.underline}>Create Project</span>{" "}
                   </Link>

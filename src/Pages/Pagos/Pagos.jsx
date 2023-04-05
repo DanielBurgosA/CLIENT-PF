@@ -1,4 +1,3 @@
-import style from "./Pagos.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -23,7 +22,6 @@ export default function Pagos() {
 
   const dispatch = useDispatch();
   const payLink = useSelector((state) => state.paymentLink.payLink);
-  const LogInStatus = useSelector (state => state.login.status)
   const location = useLocation()
   
   const queryParams = new URLSearchParams(location.search);
@@ -42,7 +40,7 @@ export default function Pagos() {
       dispatch(cleanIdPago());
       dispatch(cleanLink())
     }
-  },[payLink])
+  },[payLink, dispatch, id])
 
   let projectById = useSelector((state) => state.project.projectIdPago);
   !projectById&& dispatch(provGetIdPago(id));

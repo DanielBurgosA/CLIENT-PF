@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   FormControl,
@@ -10,14 +10,12 @@ import {
   Container,
   VStack,
   Textarea,
-  Center,
   Heading,
-  Select,
 } from "@chakra-ui/react";
 import { projectSchema } from "./Errors";
 import { postProject } from "../../Redux/Slicers/projectSlicer";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function FormProjects() {
   const navigate = useNavigate();
@@ -68,7 +66,6 @@ export default function FormProjects() {
   };
 
 
-  if (LogInStatus) {
     return (
       <Container mt="100px" mb="100px">
         <Heading>Create a Project</Heading>
@@ -155,7 +152,5 @@ export default function FormProjects() {
         {err ? <span>debes loguearte</span> : null}
       </Container>
     );
-  } else {
-   return (<Navigate to="/login" />);
-  }
+  
 }

@@ -7,22 +7,18 @@ import {
   Flex,
   Avatar,
   Box,
-  Heading,
   Text,
   Image,
   Button,
   Center,
-  Input,
   useColorModeValue,
 
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addseeLaterItem } from "../../Redux/Slicers/projectSlicer";
+import { useSelector } from "react-redux";
 
 export default function ProjectCard(props) {
-  const dispatch = useDispatch();
-  const { name, abstrac, image, location, id, user, title, completed, currentAmount, cost } = props.project;
+  const { name, abstrac, image, location, id, user, completed, currentAmount, cost } = props.project;
   const navigate = useNavigate();
   const LogInStatus = useSelector((state) => state.login.status);
 
@@ -34,9 +30,6 @@ export default function ProjectCard(props) {
     }
   };
 
-  const clickHandlerSeeLater = (e) => {
-    dispatch(addseeLaterItem(e.target.value));
-  };
 
   return (
     <div>
