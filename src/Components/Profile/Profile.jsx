@@ -29,6 +29,7 @@ export default function Profile() {
         gridTemplateColumns={"250px 1fr"}
         color="blackAlpha.700"
         fontWeight="bold"
+        height="50rem"
       >
         {/* Primera manera de condicionar */}
         <GridItem pl="2" bg="blue.100" area={"nav"} mr="3px">
