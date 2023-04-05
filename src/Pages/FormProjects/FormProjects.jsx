@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import {
   FormControl,
   FormLabel,
@@ -10,14 +11,12 @@ import {
   Container,
   VStack,
   Textarea,
-  Center,
   Heading,
-  Select,
 } from "@chakra-ui/react";
 import { projectSchema } from "./Errors";
 import { postProject } from "../../Redux/Slicers/projectSlicer";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function FormProjects() {
   const navigate = useNavigate();
@@ -40,8 +39,6 @@ export default function FormProjects() {
     myWidget.open()
   }
 
-
-  const users = useSelector((state) => state.user.users);
   const LogInStatus = useSelector((state) => state.login.status);
   console.log("login del create", LogInStatus);
   const dispatch = useDispatch();
@@ -60,7 +57,11 @@ export default function FormProjects() {
       data.image=img;
       dispatch(postProject(data))
       console.log(data);
-      alert("se creo proyecto")
+      Swal.fire({
+        icon: 'success',
+        title: 'Project submit successfully',
+        showConfirmButton: false,
+      })
       navigate("/projects");
     //}else{
      // SetErr("debes loguearte")
@@ -70,7 +71,6 @@ export default function FormProjects() {
   };
 
 
-  if (LogInStatus) {
     return (
       <Container mt="100px" mb="100px">
         <Heading>Create a Project</Heading>
@@ -113,7 +113,7 @@ export default function FormProjects() {
             </FormControl>
 
             <FormControl isInvalid={errors.cost ? true : false}>
-              <FormLabel>cost</FormLabel>
+              <FormLabel>Cost</FormLabel>
               <Input
                 type="text"
                 placeholder="Share your project's address"
@@ -146,18 +146,16 @@ export default function FormProjects() {
             </FormControl>
 
             {img&&<img src={img} alt="project" width="200px" height="200px"  objectFit= "cover"/>}
-            <Button onClick={widgetOpen}>Imagen</Button>
+            <Button onClick={widgetOpen}>Image</Button>
 
             <Button type="submit" colorScheme="blue">
               {" "}
-              send{" "}
+              Send{" "}
             </Button>
           </VStack>
         </form>
-        {err ? <span>debes loguearte</span> : null}
+        {err ? <span>You must be logged in to post a project</span> : null}
       </Container>
     );
-  } else {
-   return (<Navigate to="/login" />);
-  }
+  
 }

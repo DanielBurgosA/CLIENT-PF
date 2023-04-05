@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text, Spinner, Center } from "@chakra-ui/react";
 import SearchBar from "../SearchBar/SearchBar";
 
 //import de componentes
@@ -13,6 +13,7 @@ import LargeWithNewsletter from "../Footer/Footer";
 //import objeto de prueba
 
 export default function Page({ projects }) {
+
   //logica paginado
   const [currentPage, setcurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(3);
@@ -36,7 +37,6 @@ export default function Page({ projects }) {
                             "nav footer"`}
       gridTemplateRows={"50px 1fr 30px"}
       gridTemplateColumns={"150px 1fr "}
-      h="200px"
       gap="1"
       color="blackAlpha.700"
     >
@@ -58,7 +58,15 @@ export default function Page({ projects }) {
           {projects.length ? (
             <CardContainer currentProjects={currentProjects} />
           ) : (
-            <NoResult />
+            <Center height="25rem">
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+            </Center>
           )}
         </div>
         <br />
@@ -72,7 +80,6 @@ export default function Page({ projects }) {
       </GridItem>
 
       <GridItem pl="2" area={"footer"}>
-        <LargeWithNewsletter />
       </GridItem>
     </Grid>
   );

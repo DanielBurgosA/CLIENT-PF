@@ -7,98 +7,118 @@ import {
   Flex,
   Avatar,
   Box,
-  Heading,
   Text,
   Image,
   Button,
   Center,
-  Input,
+  useColorModeValue,
+
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addseeLaterItem } from "../../Redux/Slicers/projectSlicer";
+import { useSelector } from "react-redux";
 
 export default function ProjectCard(props) {
-  const dispatch = useDispatch();
-  const { name, abstrac, image, location, id, user, title, completed, currentAmount, cost } = props.project;
+  const { name, abstrac, image, location, id, user, completed, currentAmount, cost } = props.project;
   const navigate = useNavigate();
   const LogInStatus = useSelector((state) => state.login.status);
 
   const clickHandlerDonate = (e) => {
     if (LogInStatus) {
-      navigate(`/pagos?id=${id}`);
+      navigate(`/pagos/${id}`);
     } else {
       navigate("/login");
     }
   };
 
-  const clickHandlerSeeLater = (e) => {
-    dispatch(addseeLaterItem(e.target.value));
-  };
 
   return (
     <div>
       <Card
         maxW="md"
         maxWidth="300px"
-        maxHeight="450px"
+        maxHeight="470px"
         minWidth="300px"
-        minHeight="450px"
+        minHeight="470px"
       >
         <CardHeader maxHeight="80px">
-          <Flex spacing="4">
-            <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Link to={`/user/${user}`}>
-                <Avatar name={user} src="https://bit.ly/sage-adebayo" />
-              </Link>
-              <Box>
-                <Text>{name}</Text>
-                <Text>{location}</Text>
-              </Box>
-            </Flex>
+          <Flex spacing="4" alignItems="center">
+            
+              <Avatar name={user.user_name} src={user.user_image} />
+         
+            <Box>
+              <Text fontWeight="bold" fontSize="sm">{name}</Text>
+              <Text fontSize="sm">{location}</Text>
+            </Box>
           </Flex>
         </CardHeader>
+        
+        <Box  m="0.5rem">
+         <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight="bolt"
+              fontSize={'1xl'} > Raised money: ${currentAmount} 
+        </Text>
+        
+
+        <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight="bolt"
+              fontSize={'1xl'} > Total to collect: ${cost}
+        </Text>
+        </Box>
+
         <Link to={`/projects/${id}`} key={id}>
           <CardBody maxHeight="80px">
             <Text>{abstrac}</Text>
           </CardBody>
           <Center>
-            <Image
-              objectFit="cover"
-              src={image}
-              alt={name}
-              margin="5px"
-              maxHeight="200px"
-              minHeight="200px"
+          <Image
+            objectFit="cover"
+            src={image}
+            alt={name}
+            margin="1px"
+            maxHeight="200px"
+            minHeight="200px"
+            maxWidth="300px"
+            minWidth="300px"
             />
           </Center>
+          
         </Link>
         <CardFooter
           justify="space-between"
           flexWrap="wrap"
           maxHeight="50px"
           sx={{
-            "& > button": {
-              minW: "50px",
-            },
-          }}
+                "& > button": {
+                minW: "50px",
+                },
+                }}
           margin="5px"
         >
-          {completed?<p>COMPLETED</p> : <Button flex="1" variant="ghost" onClick={clickHandlerDonate}>
-            Donar
-          </Button>}
 
-          <Button
-            flex="1"
-            variant="ghost"
-            type="submit"
-            value={id}
-            onClick={clickHandlerSeeLater}
-          >
-            See later
-          </Button>
-        </CardFooter>
+  {completed ?  (
+    <div style={{ marginLeft: "75px" }}>
+      <p style={{ color: "green", fontWeight: "bold" }}>COMPLETED</p>
+    </div>
+    ) : !localStorage.getItem("rol")&&(
+    <Button
+      flex="1"
+      variant="ghost"
+      type="submit"
+      backgroundColor="blue.500"
+      color="white"
+      value={id}
+      onClick={clickHandlerDonate}
+      _hover={{ backgroundColor: "green.500" }}
+    >
+      Donate
+    </Button>
+  )  }
+</CardFooter>
+
+
       </Card>
     </div>
   );
 }
+
+

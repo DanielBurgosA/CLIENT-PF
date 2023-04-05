@@ -5,7 +5,9 @@ import axios from "axios";
 
 
     const defaultOptions = {
-        baseURL: "https://pf-api-production.up.railway.app/",
+
+        baseURL: "https://pf-api-production.up.railway.app",
+
     };
 
     // Create instance

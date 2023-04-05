@@ -12,6 +12,8 @@ import {
   Projects,
   Validation,
   UserForm,
+  CancelPayment,
+  ExecutePayment
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
 
@@ -20,26 +22,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 import { userGoogleLogin } from "./Redux/Slicers/LogInOutSlicer";
-import  ForgotPassword  from "./Pages/forgotPassword/ForgotPAssword";
-import  ResetPassword  from "./Pages/ResetPAssword/ResetPassword";
-
+import { getUser } from "./Redux/Slicers/LogInOutSlicer";
+import ForgotPassword from "./Pages/forgotPassword/ForgotPAssword";
+import ResetPassword from "./Pages/ResetPAssword/ResetPassword";
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const LogInStatus = useSelector (state => state.login.status)
+  const LogInStatus = useSelector((state) => state.login.status);
 
-  
-  useEffect(()=>{
-    if (!LogInStatus){
-        dispatch(userGoogleLogin());
+  useEffect(() => {
+    if (!LogInStatus) {
+      dispatch(userGoogleLogin());
     }
-    
   }, [dispatch, LogInStatus]);
 
   useEffect(() => {
     dispatch(getProject());
     dispatch(getSeeLaterItem());
+    if(LogInStatus){
+      dispatch(getUser());
+    }
+    
   });
 
   return (
@@ -57,13 +62,22 @@ function App() {
         <Route exact path="/user/:name" element={<DetailUser />} />
         <Route exact path="/login" element={<LogIn />} />
         <Route exact path="/create-user" element={<UserForm />} />
-        <Route exact path="/pagos" element={<Pagos />} />
+        <Route exact path="/pagos/:id" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
+        <Route exact path="/cancel-payment" element={<CancelPayment />} />
+        <Route exact path="/execute-payment" element={<ExecutePayment />} />
         <Route exact path="/validation" element={<Validation />} />
-        <Route exact path="/forgotPassword" element={<ForgotPassword/>}></Route>
-        <Route exact path = "/reset" element={< ResetPassword/>}/>
+        <Route exact path="/execute-payment" element={<ExecutePayment />} />
+        <Route exact path="/cancel-payment" element={<CancelPayment />} />
+        <Route
+          exact
+          path="/forgotPassword"
+          element={<ForgotPassword />}
+        ></Route>
+        <Route exact path="/reset" element={<ResetPassword />} />
+        <Route exact path="/profile/*" element={<Profile />} />
       </Routes>
-      {location.pathname.indexOf("projects") !== 1 && <LargeWithNewsletter />}
+     <LargeWithNewsletter />
     </div>
   );
 }

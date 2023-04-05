@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   getProjectById,
   provGetId,
@@ -8,84 +8,132 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
+  Container,
+  Stack,
   Text,
-  Button,
   Image,
-  Center,
+  Flex,
   VStack,
+  Button,
   Heading,
-  Card,
+  SimpleGrid,
+  StackDivider,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import style from "./DetailProject.module.css";
 import AddComment from "../../Components/CreateComment/CreateComment.jsx";
+import CommentsProjectById from "../../Components/CommentsByIds/CommentsProjectById";
 
 export default function DetailProject() {
+  //const { colorMode, toggleColorMode } = useColorMode();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const LogInStatus = useSelector((state) => state.login.status);
 
   useEffect(() => {
-    dispatch(provGetId(id));
+    dispatch(getProjectById(id));
     return () => {
       dispatch(cleanId());
     };
   }, [dispatch, id]);
-  
+
   let projectById = useSelector((state) => state.project.projectId);
   
+    const clickHandlerDonate = (e) => {
+    if (LogInStatus) {
+      navigate(`/pagos/${id}`);
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
-    <Box maxH="1.5">
-      {projectById && Object.keys(projectById) ? (
-        <Box textAlign="justify">
-          <VStack spacing={3}>
-            <Heading as="b" fontSize="4rem" margin="1rem 3rem">
+    <Box>
+    <Container maxW={'7xl'}>
+      <SimpleGrid
+        columns={{ base: 1, lg: 2 }}
+        spacing={{ base: 8, md: 10 }}
+        py={{ base: 18, md: 24 }}>
+        <Flex>
+          <Image
+            rounded={'md'}
+            alt={'product image'}
+            src={
+              projectById.image
+            }
+            fit={'cover'}
+            align={'center'}
+            w={'100%'}
+            h={{ base: '100%', sm: '400px', lg: '500px' }}
+          />
+        </Flex>
+        <Stack spacing={{ base: 6, md: 10 }}>
+          <Box as={'header'}>
+            <Heading
+              lineHeight={1.1}
+              fontWeight={600}
+              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
               {projectById.name}
             </Heading>
-            <Card
-              variant="outline"
-              borderColor="#D8DEE4"
-              maxW="70rem"
-              className={style.Prov}
-            >
-              <Text fontSize="20px" padding="7px 10px 0px">
-                Creador: ramdom user{" "}
-              </Text>
-              <Text fontSize="15px" padding="5px">
-                {projectById.location}
-              </Text>
-            </Card>
-            <Center>
-              <Image
-                boxSize="400px"
-                objectFit="cover"
-                borderRadius="full"
-                align="center"
-                src={projectById.image}
-                alt={projectById.name}
+          <Box  m="0.5rem">
+         <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight={600}
+              fontSize={'2xl'} > Raised money: ${projectById.currentAmount} 
+        </Text>
+        
+
+        <Text color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight={600}
+              fontSize={'2xl'} > Total to collect: ${projectById.cost}
+        </Text>
+        </Box>
+          </Box>
+
+          <Stack
+            spacing={{ base: 4, sm: 6 }}
+            direction={'column'}
+            divider={
+              <StackDivider
+                borderColor={useColorModeValue('gray.200', 'gray.600')}
               />
-            </Center>
-            <Card
-              bg="#F6F8FA"
-              variant="outline"
-              borderColor="#D8DEE4"
-              maxW="70rem"
-            >
-              <Text fontSize="20px" padding="15px">
+            }>
+            <VStack spacing={{ base: 4, sm: 6 }}>
+              <Text
+                color={useColorModeValue('black.500', 'gray.400')}
+                fontSize={'2xl'}
+                fontWeight={'300'}>
+                Description
+              </Text>
+              <Text fontSize={'lg'}>
                 {projectById.description}
               </Text>
-            </Card>
-          </VStack>
-        </Box>
-      ) : (
-        <Text>Loading..</Text>
-      )}
-      <Box>
-        <Link to="/projects">
-          <Button margin="1rem 3rem" _hover={{ background: "#C9EEFF" }}>
-            Back
-          </Button>
-        </Link>
-      </Box>
-      <AddComment />
+            </VStack>
+          </Stack>
+          {!localStorage.getItem("rol")&&<Button
+            rounded={'none'}
+            w={'full'}
+            mt={8}
+            size={'lg'}
+            py={'7'}
+            backgroundColor="blue.500"
+            color="white"
+            textTransform={'uppercase'}
+            onClick={clickHandlerDonate}
+            _hover={{
+              transform: 'translateY(2px)',
+              boxShadow: 'lg',
+            }}>
+            Donate
+          </Button>}
+        </Stack>
+      </SimpleGrid>
+    </Container>
+      {LogInStatus ? <AddComment /> : ""}
+      <div>
+        <CommentsProjectById />
+      </div>
     </Box>
   );
 }

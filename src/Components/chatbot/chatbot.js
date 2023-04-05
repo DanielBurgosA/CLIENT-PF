@@ -20,7 +20,7 @@ const Chatbot = () => {
     {
       id: 1,
       message:
-        "Bienvenido al chatbot de Linking Future, para comenzar, dime tu nombre.",
+        "Welcome to the Linking Future chatbot, to begin with, tell me your name.",
       trigger: 2,
     },
     {
@@ -34,31 +34,31 @@ const Chatbot = () => {
         ) {
           return true;
         } else {
-          return "Ingresa un nombre valido.";
+          return "Enter a valid name.";
         }
       },
       trigger: 3,
     },
     {
       id: 3,
-      message: `Hola {previousValue}! Dime en que te puedo ayudar?`,
+      message: `Hi {previousValue}! Tell me where I can help you?`,
       trigger: 4,
     },
     {
       id: 4,
       options: [
-        { value: 1, label: "¿Que es linking future?", trigger: "4a" },
-        { value: 2, label: "¿Es seguro?", trigger: "4b" },
-        { value: 3, label: "¿Como dono?", trigger: "4c" },
+        { value: 1, label: "What is future linking?", trigger: "4a" },
+        { value: 2, label: "It is safe?", trigger: "4b" },
+        { value: 3, label: "How do I donate?", trigger: "4c" },
         {
           value: 4,
-          label: "¿Cuales son los tipos de usuarios?",
+          label: "What are the types of users?",
           trigger: "4d",
         },
-        { value: 5, label: "¿Como me suscribo?", trigger: "4e" },
+        { value: 5, label: "How do I subscribe?", trigger: "4e" },
         {
           value: 6,
-          label: "Quiero hablar con un Staff de la ONG",
+          label: "I want to speak with a staff of the NGO",
           trigger: "4f",
         },
       ],
@@ -66,37 +66,37 @@ const Chatbot = () => {
     {
       id: "4a",
       message:
-        "linking future es una plataforma que busca ayudar a conectar ONG's con personas que quieran ayudar en diversas causas.",
+        "linking future is a platform that seeks to help connect NGO's with people who want to help in various causes.",
       trigger: 5,
     },
     {
       id: "4b",
       message:
-        "¡Claro que si! El equipo de linking future se encarga de verificar que las ONG's sean reales y que las donaciones sean seguras.",
+        "Of course! The linking future team is in charge of verifying that the NGO's are real and that the donations are safe.",
       trigger: 5,
     },
     {
       id: "4c",
       message:
-        "Puedes donar desde la pagina de la iniciativa a la que quieras ayudar mediante PayPal.",
+        "You can donate from the page of the initiative you want to help through PayPal.",
       trigger: 5,
     },
     {
       id: "4d",
       message:
-        "Puedes encontrar dos clases de usuarios en nuestra pagina, el PRIMERO que es dirigido a usuario que representa una comunidad, el cual va a contar con una seccion para poder proponer un proyecto para ayudar a una comunidad, y el SEGUNDO clase de usuario, el cual esta destinado a personas interesadas en ayudar en las causas pendientes mediante donaciones y estar informado de todos los avances del proyecto involucrado.",
+        "You can find two classes of users on our page, the FIRST one that is aimed at users who represent a community, which will have a section to be able to propose a project to help a community, and the SECOND class of user, which It is intended for people interested in helping in pending causes through donations and being informed of all the progress of the project involved.",
       trigger: 5,
     },
     {
       id: "4e",
       message:
-        "Puedes suscribirte mediante un pago mensual en PayPal, de esta manera podrás asegurarte de que apoyaras a una ONG todos los meses.",
+        "You can subscribe by means of a monthly payment in PayPal, in this way you can make sure that you will support an NGO every month.",
       trigger: 5,
     },
     {
       id: "4f",
       message:
-        "Lo siento si no he podido ayudarte, deja tu mensaje y un miembro de linking future se contactara contigo lo antes posible en tu email, te dejo el link acá abajo ⬇️ ",
+        "I'm sorry if I couldn't help you, leave your message and a linking future member will contact you as soon as possible via email, I'll leave the link below ⬇️ ",
       trigger: "5a",
     },
     {
@@ -112,36 +112,36 @@ const Chatbot = () => {
     },
     {
       id: 5,
-      message: "He podido ayudarte?",
+      message: "Have I been able to help you?",
       trigger: 6,
     },
     {
       id: 6,
       options: [
-        { value: 1, label: "¡Si! Gracias.", trigger: "7" },
-        { value: 2, label: "No, quiero hablar con un staff", trigger: "4f" },
+        { value: 1, label: "Yeah! Thank you.", trigger: "7" },
+        { value: 2, label: "No, I want to talk to a staff", trigger: "4f" },
       ],
     },
     {
       id: 7,
-      message: "¿Puedo ayudarte en algo mas?",
+      message: "Can I help you in any way?",
       trigger: 8,
     },
     {
       id: 8,
       options: [
-        { value: 1, label: "¡Si!", trigger: "9" },
-        { value: 2, label: "No, gracias.", trigger: "9b" },
+        { value: 1, label: "¡Yes!", trigger: "9" },
+        { value: 2, label: "No, thanks.", trigger: "9b" },
       ],
     },
     {
       id: 9,
-      message: "Dime, ¿en que te puedo ayudar?",
+      message: "Tell me, how can I help you?",
       trigger: 4,
     },
     {
       id: "9b",
-      message: "Espero haberte ayudado, ¡Hasta luego!",
+      message: "I hope I have helped you, see you later!",
       end: true,
     },
   ];

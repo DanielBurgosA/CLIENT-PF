@@ -27,6 +27,7 @@ export default function CardContainer({ currentProjects }) {
     >
       <SimpleGrid templateColumns="repeat(3, 1fr)" spacing="40px">
         {currentProjects.map((project) => {
+          console.log(project);
           return (
             <Box key={project.id}>
               <ProjectCard
