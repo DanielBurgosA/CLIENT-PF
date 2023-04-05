@@ -15,7 +15,7 @@ export default function SidebarUser() {
     <div className={style.sidebar}>
 
       <VStack>
-
+        <Link to="/profile/userInfo">
         <Button
           colorScheme="teal"
           variant="outline"
@@ -23,32 +23,37 @@ export default function SidebarUser() {
           w="90%"
           
         >
-          <Link to="/profile/userInfo">General</Link>
+          General
         </Button>
+        </Link>
 
-
-        <Button colorScheme="teal" variant="outline" m="0.5rem" w="90%">
-          <Link to="/profile/donationHistory" >Donation History</Link>
+        <Link to="/profile/donationHistory" >
+        <Button colorScheme="teal" variant="outline" m="0.5rem">
+          Donation History
         </Button>
+        </Link>
 
-
+        <Link to="/profile/projectsUser">
         <Button
           colorScheme="teal"
           variant="outline"
           m="0.5rem"
           w="90%"
         >
-          <Link to="/profile/projectsUser">User Projects</Link>
+          User Projects
         </Button>
+        </Link>
 
+        <Link to="/profile/edit">
         <Button
           colorScheme="teal"
           variant="outline"
           m="0.5rem"
           w="90%"
         >
-          <Link to="/profile/edit">Edit profile</Link>
+          Edit profile
         </Button>
+        </Link>
 
       </VStack>
     </div>

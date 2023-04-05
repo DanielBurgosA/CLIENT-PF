@@ -12,7 +12,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import defaultImage from "../../../Utils/image/276-2761324_default-avatar-png.png";
 
 

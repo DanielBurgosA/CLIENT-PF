@@ -1,9 +1,11 @@
-import { color } from "framer-motion";
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchName } from "../../Redux/Slicers/projectSlicer";
-import style from "./SeachBar.module.css";
+import {
+  Input,
+  InputGroup,
+} from '@chakra-ui/react';
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -12,18 +14,18 @@ export default function SearchBar() {
 
   const handlerInputChange = (e) => {
     setName(e.target.value);
-    dispatch(searchName(e.target.value));
+    dispatch(searchName(e.target.value.toLowerCase()));
   };
 
   return (
-    <div>
-      <input
-        className={style.input}
-        type="text"
-        placeholder="Search project by name..."
-        onChange={(e) => handlerInputChange(e)}
-        value={name}
-      />
-    </div>
+    <InputGroup size='md'>
+    <Input
+      width='auto'
+      type={'text'}
+      placeholder='Search Project'
+      onChange={(e) => handlerInputChange(e)}
+      value = {name}
+    />
+  </InputGroup>
   );
 }

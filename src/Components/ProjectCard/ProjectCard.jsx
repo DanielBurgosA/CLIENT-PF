@@ -7,36 +7,29 @@ import {
   Flex,
   Avatar,
   Box,
-  Heading,
   Text,
   Image,
   Button,
   Center,
-  Input,
   useColorModeValue,
 
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addseeLaterItem } from "../../Redux/Slicers/projectSlicer";
+import { useSelector } from "react-redux";
 
 export default function ProjectCard(props) {
-  const dispatch = useDispatch();
-  const { name, abstrac, image, location, id, user, title, completed, currentAmount, cost } = props.project;
+  const { name, abstrac, image, location, id, user, completed, currentAmount, cost } = props.project;
   const navigate = useNavigate();
   const LogInStatus = useSelector((state) => state.login.status);
 
   const clickHandlerDonate = (e) => {
     if (LogInStatus) {
-      navigate(`/pagos?id=${id}`);
+      navigate(`/pagos/${id}`);
     } else {
       navigate("/login");
     }
   };
 
-  const clickHandlerSeeLater = (e) => {
-    dispatch(addseeLaterItem(e.target.value));
-  };
 
   return (
     <div>
@@ -49,8 +42,8 @@ export default function ProjectCard(props) {
       >
         <CardHeader maxHeight="80px">
           <Flex spacing="4" alignItems="center">
-            <Link to={`/user/${user}`}>
-              <Avatar name={user} src="https://bit.ly/sage-adebayo" />
+            <Link to={`/user/${user.user_name}`}>
+              <Avatar name={user.user_name} src={user.user_image} />
             </Link>
             <Box>
               <Text fontWeight="bold" fontSize="sm">{name}</Text>
@@ -91,16 +84,16 @@ export default function ProjectCard(props) {
           
         </Link>
         <CardFooter
-  justify="space-between"
-  flexWrap="wrap"
-  maxHeight="50px"
-  sx={{
-    "& > button": {
-      minW: "50px",
-    },
-  }}
-  margin="5px"
->
+          justify="space-between"
+          flexWrap="wrap"
+          maxHeight="50px"
+          sx={{
+                "& > button": {
+                minW: "50px",
+                },
+                }}
+          margin="5px"
+        >
 
   {completed ?  (
     <div style={{ marginLeft: "75px" }}>
@@ -117,7 +110,7 @@ export default function ProjectCard(props) {
       onClick={clickHandlerDonate}
       _hover={{ backgroundColor: "green.500" }}
     >
-      Donar
+      Donate
     </Button>
   )  }
 </CardFooter>

@@ -1,17 +1,14 @@
 import { Button } from "@chakra-ui/button";
 import { useDispatch } from "react-redux";
 import { changeBanStatus } from "../../Redux/Slicers/AdminDashboard";
-import { useState, useEffect } from "react";
 import { getUsers } from "../../Redux/Slicers/AdminDashboard";
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from '@chakra-ui/react'
 
@@ -25,7 +22,6 @@ export default function ContainerUsers({ data, render }) {
     //render();
     console.log(a)
     if (a.meta?.requestStatus === "fulfilled") {
-      console.log("hola")
       dispatch(getUsers());
     }
   }
@@ -39,7 +35,6 @@ export default function ContainerUsers({ data, render }) {
     //render();
     console.log(a)
     if (a.meta?.requestStatus === "fulfilled") {
-      console.log("hola")
       dispatch(getUsers());
     }
   }

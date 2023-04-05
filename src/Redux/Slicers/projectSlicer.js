@@ -78,16 +78,16 @@ const projectsSlicer = createSlice({
     },
 
     provGetId(state, action) {
-      state.projectId = state.AllProjects.filter((project) => action.payload == project.id)[0];
+      state.projectId = state.AllProjects.filter((project) => action.payload === project.id)[0];
     },
     
     provGetIdPago(state, action) {
-      state.projectIdPago = state.AllProjects.filter((project) => action.payload == project.id)[0];
+      state.projectIdPago = state.AllProjects.filter((project) => action.payload === project.id)[0];
     },
 
     ///////////logica filtros////////////
     filter(state, action) {
-      if (!state.filterLocation.length && !state.filterState.length && state.searchName) {
+      if (!state.filterLocation.length && !state.filterState.length && state.projectsSearch==="") {
         state.ProjectsToDisplay = [...state.AllProjects];
         state.projectsFiltred = [...state.AllProjects];
       } else {
@@ -95,7 +95,7 @@ const projectsSlicer = createSlice({
 
         ////////// search ///////////////
         if (state.projectsSearch.length) {
-          let answers = state.AllProjects.filter((project) => project.name.indexOf(state.projectsSearch) != -1)
+          let answers = state.AllProjects.filter((project) => project.name.toLowerCase().indexOf(state.projectsSearch) !== -1)
           toFilter = [...answers];
         }
 
@@ -171,7 +171,7 @@ const projectsSlicer = createSlice({
     },
     //estado para saber cuantos projectos estan en ver mas tarde
     addseeLaterItem(status, action) {
-      const itemSelected = status.AllProjects.filter((project) => project.id == action.payload);
+      const itemSelected = status.AllProjects.filter((project) => project.id === action.payload);
       status.seeLaterItemsAdds.push(itemSelected[0]);
       localStorage.setItem("projectsToSeeLater", JSON.stringify(status.seeLaterItemsAdds));
     },

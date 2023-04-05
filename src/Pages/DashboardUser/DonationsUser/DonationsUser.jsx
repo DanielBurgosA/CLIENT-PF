@@ -1,4 +1,3 @@
-import style from "./DonationHistory.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDonations } from "../../../Redux/Slicers/UserDashboard";
@@ -6,7 +5,6 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,

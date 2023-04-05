@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import ContainerUsers from "../../../Components/ContainerUsers/ContainerUsers";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getUsers } from "../../../Redux/Slicers/AdminDashboard";
 
 export default function BannedUsersInfo() {

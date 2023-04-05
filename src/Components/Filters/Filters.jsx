@@ -43,30 +43,30 @@ export default function Filters ({page}){
         <div>
             <Menu closeOnSelect={false } overflow="scroll">
                 <MenuButton as={Button} colorScheme='blue' className={style.Buttons}>
-                    Ordenar:
+                    Order:
                 </MenuButton>
                 <MenuList minWidth='240px'>
-                    <MenuOptionGroup defaultValue='none' title='Orden Alfabético' type='radio' onChange={handlerAlphaOrder}>
-                        <MenuItemOption value='none'>Ninguno</MenuItemOption>
+                    <MenuOptionGroup defaultValue='none' type='radio' onChange={handlerAlphaOrder}>
+                        <MenuItemOption value='none'>No order</MenuItemOption>
                         <MenuItemOption value='asc'>A-Z</MenuItemOption>
                         <MenuItemOption value='desc'>Z-A</MenuItemOption>
-                        <MenuItemOption value='+'>Mayor costo</MenuItemOption>
-                        <MenuItemOption value='-'>Menor cost</MenuItemOption>
+                        <MenuItemOption value='+'>Higher cost</MenuItemOption>
+                        <MenuItemOption value='-'>Lower cost</MenuItemOption>
                     </MenuOptionGroup>
                 </MenuList>
             </Menu>
             <Menu closeOnSelect={false}>
                 <MenuButton as={Button} colorScheme='blue'  className={style.Buttons}>
-                    Filtrar por: 
+                    Filter by: 
                 </MenuButton>
                 <MenuList minWidth='240px' maxWidth='300px'>
-                    <MenuOptionGroup title='Estado' type='checkbox'onChange={handlerFState}>
-                        <MenuItemOption value={true} >Completado</MenuItemOption>
-                        <MenuItemOption value={false} >En Proceso</MenuItemOption>
+                    <MenuOptionGroup title='State' type='checkbox'onChange={handlerFState}>
+                        <MenuItemOption value={true} >Completed</MenuItemOption>
+                        <MenuItemOption value={false} >In progress</MenuItemOption>
                     </MenuOptionGroup>
                     <MenuDivider />
                     <Box maxHeight='200px' overflowY="scroll">
-                        <MenuOptionGroup title='Pais' type='checkbox'onChange={handlerFLocation} >
+                        <MenuOptionGroup title='Country' type='checkbox'onChange={handlerFLocation} >
                             {locations.map((location, i)=>{
                                     return <MenuItemOption value={location} key={i}>{location}</MenuItemOption>
                             })}

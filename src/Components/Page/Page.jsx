@@ -13,6 +13,7 @@ import LargeWithNewsletter from "../Footer/Footer";
 //import objeto de prueba
 
 export default function Page({ projects }) {
+
   //logica paginado
   const [currentPage, setcurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(3);
