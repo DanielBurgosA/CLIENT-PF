@@ -189,6 +189,7 @@ const projectsSlicer = createSlice({
       })
       .addCase(getProjectById.fulfilled, (state, action) => {
         state.projectId = action.payload;
+        state.projectIdPago = action.payload;
       })
       .addCase(getProject.fulfilled, (state, action) => {
         state.AllProjects = [...action.payload];

@@ -9,7 +9,7 @@ export default function ExecutePayment() {
       title: 'Cancelled',
       text: 'Payment Successfully Cancelled',
     }).then(function() {
-        window.location = "http://localhost:3000/home";
+        window.location = "https://client-pf-seven.vercel.app/home";
     });
   };
   return (

@@ -35,7 +35,7 @@ export default function UserDonationAbs() {
                 {`Active Project` }
             </StatLabel>
             <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
-            {`You have ${userProjects.length} active projects` }
+            {`You have ${userProjects.length} projects` }
             </StatNumber>
         </Stat>
     )

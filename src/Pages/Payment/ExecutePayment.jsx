@@ -9,7 +9,7 @@ export default function ExecutePayment() {
       title: 'Done',
       text: 'Payment Successfully Done',
     }).then(function() {
-        window.location = "http://localhost:3000/home";
+        window.location = "https://client-pf-seven.vercel.app/home";
     });
   };
   return (

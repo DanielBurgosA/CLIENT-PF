@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
 import { cleanLink, linkPaymentPlatform } from "../../Redux/Slicers/paymentSlicer";
-import { provGetIdPago, cleanIdPago, getProject } from "../../Redux/Slicers/projectSlicer";
+import { provGetIdPago, cleanIdPago, getProjectById } from "../../Redux/Slicers/projectSlicer";
 import {
   Flex,
   Box,
@@ -27,7 +27,7 @@ export default function Pagos() {
  
 
   useEffect(()=>{
-    dispatch(provGetIdPago(Number(id)));
+    dispatch(getProjectById(Number(id)));
     payLink && window.open(payLink, "_blank");
     return ()=>{
       dispatch(cleanIdPago());
@@ -37,7 +37,7 @@ export default function Pagos() {
   let projectById = useSelector((state) => state.project.projectIdPago);
 
   console.log("esto es el projectById",projectById);
-  !projectById&& dispatch(provGetIdPago(id));
+  !projectById&& dispatch(getProjectById(id));
 
   const max = parseFloat(projectById.cost) - parseFloat(projectById.currentAmount);
   console.log(max);

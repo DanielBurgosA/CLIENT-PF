@@ -111,14 +111,14 @@ export default function DetailProject() {
               </Text>
             </VStack>
           </Stack>
-          <Button
+          {!localStorage.getItem("rol")&&<Button
             rounded={'none'}
             w={'full'}
             mt={8}
             size={'lg'}
             py={'7'}
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
+            backgroundColor="blue.500"
+            color="white"
             textTransform={'uppercase'}
             onClick={clickHandlerDonate}
             _hover={{
@@ -126,7 +126,7 @@ export default function DetailProject() {
               boxShadow: 'lg',
             }}>
             Donate
-          </Button>
+          </Button>}
         </Stack>
       </SimpleGrid>
     </Container>

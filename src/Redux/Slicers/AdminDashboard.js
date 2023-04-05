@@ -115,11 +115,10 @@ const adminDashboardSlicer = createSlice({
       .addCase(getUsers.fulfilled, (state, action) => {
         state.AllUsers = action.payload;
 
-
         if (state.AllUsers.length > 0) {
           const TodosUsuarios = state.AllUsers;
           const UsuariosBuenos = TodosUsuarios.filter(
-            (elem) => elem.deleted === false
+            (elem) => elem.deleted === false&&elem.admin === false
           );
           state.GoodUsers = [...UsuariosBuenos];
         }
