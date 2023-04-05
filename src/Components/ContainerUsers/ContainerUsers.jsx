@@ -22,7 +22,6 @@ export default function ContainerUsers({ data, render }) {
     //render();
     console.log(a)
     if (a.meta?.requestStatus === "fulfilled") {
-      console.log("hola")
       dispatch(getUsers());
     }
   }
@@ -36,7 +35,6 @@ export default function ContainerUsers({ data, render }) {
     //render();
     console.log(a)
     if (a.meta?.requestStatus === "fulfilled") {
-      console.log("hola")
       dispatch(getUsers());
     }
   }

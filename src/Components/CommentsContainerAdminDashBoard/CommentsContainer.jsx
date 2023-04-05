@@ -20,7 +20,7 @@ export default function CommentsContainer({ data, click }) {
 
     return (
         <TableContainer>
-            <Heading textAlign={"center"}>Hola</Heading>
+            <Heading textAlign={"center"}>Comments</Heading>
             <Table variant='simple'>
                 <Thead>
                     <Tr>

@@ -46,6 +46,17 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const uploadImage = createAsyncThunk("user/imageUser", async (info) => {
+  axios.interceptors.request.use((req) => {
+    const token = localStorage.getItem("value");
+    req.headers.authorization = `Bearer ${token}`;
+    return req;
+  });
+  console.log(info);
+  const res = await axios.put("/imageUser", {user_image: info});
+  return res.data;
+});
+
 const userDashboardSlicer = createSlice({
   name: "userDashboard",
   initialState,
@@ -61,6 +72,10 @@ const userDashboardSlicer = createSlice({
       .addCase(getDonations.fulfilled, (state, action) => {
         console.log(action.payload)
         state.donationUser = action.payload;
+      })
+
+      .addCase(uploadImage.fulfilled, (state, action) => {
+        console.log(action.payload)
       })
 
      
