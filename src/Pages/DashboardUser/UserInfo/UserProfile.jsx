@@ -25,8 +25,8 @@ export default function UserProfile() {
     <Stack
       borderWidth="1px"
       borderRadius="lg"
-      w={{ sm: '100%', md: '540px' }}
-      height={{ sm: '476px', md: '20rem' }}
+      w={ '540px' }
+      height={ '20rem' }
       direction={{ base: 'column', md: 'row' }}
       bg={useColorModeValue('white', 'gray.900')}
       boxShadow={'2xl'}

@@ -19,13 +19,15 @@ export default function SidebarUser() {
         <Button
           colorScheme="teal"
           variant="outline"
-          m="0.5rem"
+          mt="0.9rem"
+          w="90%"
+          
         >
           <Link to="/profile/userInfo">General</Link>
         </Button>
 
 
-        <Button colorScheme="teal" variant="outline" m="0.5rem">
+        <Button colorScheme="teal" variant="outline" m="0.5rem" w="90%">
           <Link to="/profile/donationHistory" >Donation History</Link>
         </Button>
 
@@ -34,7 +36,7 @@ export default function SidebarUser() {
           colorScheme="teal"
           variant="outline"
           m="0.5rem"
-          paddingRight="3rem"
+          w="90%"
         >
           <Link to="/profile/projectsUser">User Projects</Link>
         </Button>
@@ -43,7 +45,7 @@ export default function SidebarUser() {
           colorScheme="teal"
           variant="outline"
           m="0.5rem"
-          paddingRight="3rem"
+          w="90%"
         >
           <Link to="/profile/edit">Edit profile</Link>
         </Button>
