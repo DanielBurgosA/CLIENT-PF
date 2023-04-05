@@ -19,7 +19,9 @@ export default function SidebarUser() {
         <Button
           colorScheme="teal"
           variant="outline"
-          m="0.5rem"
+          mt="0.9rem"
+          w="90%"
+          
         >
           General
         </Button>
@@ -36,7 +38,7 @@ export default function SidebarUser() {
           colorScheme="teal"
           variant="outline"
           m="0.5rem"
-          paddingRight="3rem"
+          w="90%"
         >
           User Projects
         </Button>
@@ -47,7 +49,7 @@ export default function SidebarUser() {
           colorScheme="teal"
           variant="outline"
           m="0.5rem"
-          paddingRight="3rem"
+          w="90%"
         >
           Edit profile
         </Button>

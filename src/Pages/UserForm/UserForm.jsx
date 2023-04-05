@@ -23,6 +23,7 @@ import { usersFormSchema } from "./UserFormErrors";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../Redux/Slicers/userSlicer";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function UserForm() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ export default function UserForm() {
 
   const Submit = (data) => {
     dispatch(postUser(data));
+    Swal.fire("Good job!", "You create a new user!", "great");
     navigate("/login");
   }
 

@@ -8,7 +8,21 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { getProject } from '../../../Redux/Slicers/AdminDashboard';
+import { useEffect } from 'react';
+
 export default function UserDonationAbs() {
+    
+    const dispatch = useDispatch();
+
+    const userProjects = useSelector(state => state.dashBoardUser.projectUser)
+    
+    
+    useEffect(() => {
+      dispatch(getProject());
+    }, [dispatch]) 
+
     return (
         <Stat
             px={{ base: 4, md: 8 }}
@@ -18,10 +32,10 @@ export default function UserDonationAbs() {
             borderColor={useColorModeValue('gray.800', 'gray.500')}
             rounded={'lg'}>
             <StatLabel fontWeight={'medium'} isTruncated>
-                {"hola"}
+                {`Active Project` }
             </StatLabel>
             <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
-                {"5 lucas"}
+            {`You have ${userProjects.length} active projects` }
             </StatNumber>
         </Stat>
     )

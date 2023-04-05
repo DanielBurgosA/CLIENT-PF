@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
 import { cleanLink, linkPaymentPlatform } from "../../Redux/Slicers/paymentSlicer";
-import { provGetIdPago, cleanIdPago } from "../../Redux/Slicers/projectSlicer";
+import { provGetIdPago, cleanIdPago, getProject } from "../../Redux/Slicers/projectSlicer";
 import {
   Flex,
   Box,

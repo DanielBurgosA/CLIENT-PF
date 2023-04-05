@@ -8,6 +8,7 @@ import {
   Th,
   Td,
   TableContainer,
+  Center,
 } from '@chakra-ui/react'
 
 export default function Donations() {
@@ -20,9 +21,11 @@ export default function Donations() {
 
   return (
 
-    
+    <Center>
+
+
       <TableContainer>
-        <Table variant='simple'>
+        <Table variant='simple' w="lg">
           <Thead>
             <Tr>
               <Th>Username</Th>
@@ -42,6 +45,7 @@ export default function Donations() {
           })}
         </Table>
       </TableContainer>
+    </Center>
 
   );
 }

@@ -36,7 +36,7 @@ export default function Profile() {
         <GridItem pl="2" bg="blue.100" area={"nav"} mr="3px">
           {rol ? <SidebarAdmin /> : <SidebarUser />}
         </GridItem>
-        <GridItem pl="2" bg="blue.50" area={"main"}>
+        <GridItem pl="2" bg="blue.50" area={"main"} with="100vw">
           {rol ? (
             <Routes>
               <Route

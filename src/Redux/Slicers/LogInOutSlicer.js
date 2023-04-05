@@ -33,7 +33,7 @@ export const userLogIn = createAsyncThunk(
             console.log(verify.data)
             return verify.data;
         } catch (error) {
-            throw Error
+            throw Error("user doesnt exist")
         }
     });
 
@@ -73,9 +73,8 @@ export const getUser = createAsyncThunk("userDashboard/getUser", async (obj, {di
         const res = await axios.get(`/user`);
         return res.data;
     }catch(err){
-        console.log("No pude");
+
         const origin = localStorage.getItem("origin")
-        console.log(origin);
         if(origin === "local") dispatch(logOutLocal());
         else await dispatch(logOutGoogle());
     }
@@ -101,7 +100,6 @@ const logInSlicer = createSlice({
                     localStorage.setItem("value", action.payload.token);
                     localStorage.setItem("origin", action.payload.origin);
                     action.payload.rol && localStorage.setItem("rol", action.payload.rol);
-                    
                     state.user = action.payload.userFix
                     state.status = true;
                 } else {
