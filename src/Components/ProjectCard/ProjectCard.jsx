@@ -24,7 +24,7 @@ export default function ProjectCard(props) {
 
   const clickHandlerDonate = (e) => {
     if (LogInStatus) {
-      navigate(`/pagos?id=${id}`);
+      navigate(`/pagos/${id}`);
     } else {
       navigate("/login");
     }

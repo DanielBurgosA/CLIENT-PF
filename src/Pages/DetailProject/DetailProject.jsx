@@ -43,7 +43,7 @@ export default function DetailProject() {
   
     const clickHandlerDonate = (e) => {
     if (LogInStatus) {
-      navigate(`/pagos?id=${id}`);
+      navigate(`/pagos/${id}`);
     } else {
       navigate("/login");
     }

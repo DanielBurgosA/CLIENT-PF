@@ -62,7 +62,7 @@ function App() {
         <Route exact path="/user/:name" element={<DetailUser />} />
         <Route exact path="/login" element={<LogIn />} />
         <Route exact path="/create-user" element={<UserForm />} />
-        <Route exact path="/pagos" element={<Pagos />} />
+        <Route exact path="/pagos/:id" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/cancel-payment" element={<CancelPayment />} />
         <Route exact path="/execute-payment" element={<ExecutePayment />} />

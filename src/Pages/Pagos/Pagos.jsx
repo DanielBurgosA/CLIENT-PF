@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { cleanLink, linkPaymentPlatform } from "../../Redux/Slicers/paymentSlicer";
 import { provGetIdPago, cleanIdPago } from "../../Redux/Slicers/projectSlicer";
 import {
@@ -17,58 +17,44 @@ import {
   useColorModeValue,
   FormErrorMessage,
 } from "@chakra-ui/react";
-
 export default function Pagos() {
-
   const dispatch = useDispatch();
   const payLink = useSelector((state) => state.paymentLink.payLink);
+  const LogInStatus = useSelector (state => state.login.status)
   const location = useLocation()
-  
-  const queryParams = new URLSearchParams(location.search);
-  console.log("esto es query", queryParams) //objeto vacio
 
-  const id = queryParams.get('id');
-
-    /* const pathname = window.location.pathname;
-    const id = pathname.split('/').pop(); 
-    console.log("esto es id", id); */
+  const { id } = useParams();
+ 
 
   useEffect(()=>{
-    dispatch(provGetIdPago(id));
+    dispatch(provGetIdPago(Number(id)));
     payLink && window.open(payLink, "_blank");
     return ()=>{
       dispatch(cleanIdPago());
       dispatch(cleanLink())
     }
   },[payLink, dispatch, id])
-
   let projectById = useSelector((state) => state.project.projectIdPago);
+
+  console.log("esto es el projectById",projectById);
   !projectById&& dispatch(provGetIdPago(id));
 
   const max = parseFloat(projectById.cost) - parseFloat(projectById.currentAmount);
-
   console.log(max);
-
   const[form, setForm]=useState({
     amount:5,
     projectId:id,
   })
-
   console.log(form.amount);
-
   const { register, handleSubmit, formState: { errors } } = useForm()
-
   const handleChange = (e) =>{
     setForm({...form, amount : e.target.value})
   }
-
     const Submit = (data) => {
       dispatch(linkPaymentPlatform(form));
       console.log("esto es data",data)
   }
-
   return (
-
     <form onSubmit={handleSubmit(Submit)}>
             <Flex
             minH={'100vh'}
@@ -109,3 +95,12 @@ export default function Pagos() {
         </form>
   );
 }
+
+
+
+
+
+
+
+
+
