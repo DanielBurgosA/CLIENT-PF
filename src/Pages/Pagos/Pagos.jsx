@@ -17,7 +17,9 @@ import {
   useColorModeValue,
   FormErrorMessage,
 } from "@chakra-ui/react";
+import { getProjectById } from "../../Redux/Slicers/projectSlicer";
 export default function Pagos() {
+
   const dispatch = useDispatch();
   const payLink = useSelector((state) => state.paymentLink.payLink);
   const LogInStatus = useSelector (state => state.login.status)
@@ -27,7 +29,9 @@ export default function Pagos() {
  
 
   useEffect(()=>{
-    dispatch(provGetIdPago(Number(id)));
+    
+
+    dispatch(getProjectById(Number(id)));
     payLink && window.open(payLink, "_blank");
     return ()=>{
       dispatch(cleanIdPago());

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Box, Flex, Grid, GridItem, Spacer, Button,Menu,MenuButton,Avatar,MenuList,Center,MenuDivider,MenuItem } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Spacer, Button, Menu, MenuButton, Avatar, MenuList, Center, MenuDivider, MenuItem } from "@chakra-ui/react";
 
 import ToggleColorMode from "../../modeColor/toggleColorMode";
 import image from "../../Utils/image/2.jpg";
@@ -19,45 +19,101 @@ export default function NavBar() {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.login.user)
-  
+
   const onClickHandler = () => {
     const origin = localStorage.getItem("origin");
-    if(origin === "local"){
+    if (origin === "local") {
       dispatch(logOutLocal());
-    }else{
+    } else {
       dispatch(logOutGoogle())
     }
     navigate("/home");
   }
   const LogInStatus = useSelector((state) => state.login.status);
   return (
-    <div className={style.navBar}>
-      <Grid templateColumns="repeat(3, 1fr)" gridTemplateRows="repeat(1fr)" >    
-        <GridItem colSpan={9} p="20px">
-          <GridItem mt="10px" mb="10px">
-            <Flex alignItems="center">
-              <a href="/home">
-            <img src={image} width="70" height="70" />
-              </a>
-              <Spacer></Spacer>
-               {LogInStatus && ( 
-                <>
-                <ToggleColorMode/>              
-                <Menu>
+    // <div className={style.navBar}>
+
+    <Flex alignItems="center" justify="space-between">
+      <a href="/home">
+        <img src={image} width="100px" height="100px" />
+      </a>
+
+      <Box display={{ base: "none", md: "block" }} w={{ md: "60vw" }} >
+        <Flex justify="space-around" alignItems="center">
+          {location.pathname !== "/home" && (
+            <Link to={"/home"}>
+              <Box as="span"
+                p="7px"
+                _hover={{
+                  background: "blue.100",
+                  borderRadius: "5px",
+                }}
+
+              >
+                Home
+              </Box>
+            </Link>
+          )}
+          {location.pathname !== "/projects" && (
+            <Link to={"/projects"}>
+              <Box as="span"
+                p="7px"
+                _hover={{
+                  background: "blue.100",
+                  borderRadius: "5px",
+                }}
+
+              >Projects</Box>
+            </Link>
+          )}
+          {location.pathname !== "/create" && (
+            <Link to={LogInStatus ? "/create" : "/login"}>
+              <Box as="span"
+                p="7px"
+                _hover={{
+                  background: "blue.100",
+                  borderRadius: "5px",
+                }}
+              >Create Project</Box>
+            </Link>
+          )}
+          {location.pathname !== "/home/aboutUs" && (
+            <Link to={"/home/aboutUs"}>
+
+              <Box as="span"
+                p="7px"
+                _hover={{
+                  background: "blue.100",
+                  borderRadius: "5px",
+                }}
+              >About Us</Box>
+            </Link>
+          )}
+
+        </Flex>
+
+      </Box>
+      <Spacer></Spacer>
+      <Box >
+        <Flex justify="space-around" alignItems="center">
+          {LogInStatus && (
+            <>
+              <ToggleColorMode />
+              <Menu>
                 <MenuButton
                   as={Button}
                   rounded={'full'}
                   variant={'link'}
                   cursor={'pointer'}
                   minW={0}
-                  marginLeft = "1rem"
-                  >
+                  marginLeft="1rem"
+                >
                   <Avatar
                     size={'md'}
                     src={user.image}
                   />
-                 </MenuButton>
-                 <MenuList alignItems={'center'}>
+                </MenuButton>
+                <MenuList alignItems={'center'}>
                   <br />
                   <Center>
                     <Avatar
@@ -75,68 +131,43 @@ export default function NavBar() {
                   {location.pathname !== "/pagos" && <MenuItem onClick={onClickHandler}>Exit</MenuItem>}
                 </MenuList>
               </Menu>
-              </>)
-              } 
+            </>)
+          }
 
-              {!LogInStatus && (
-                <a href="/create-user">
-                  <Button
-                    colorScheme="teal"
-                    variant="outline"
-                    marginRight="1rem"
-                  >
-                    Sign Up
-                  </Button>
-                </a>
-              )}
+          {!LogInStatus && (
+            <a href="/create-user">
+              <Button
+                colorScheme="teal"
+                variant="outline"
+                marginRight="1rem"
+              >
+                Sign Up
+              </Button>
+            </a>
+          )}
 
-              {!LogInStatus && (
-                <>
-                <a href="/login">
-                  <Button colorScheme="teal" variant="solid" marginRight="1rem">
-                    Sign In
-                  </Button>
-                </a>
+          {!LogInStatus && (
+            <>
+              <a href="/login">
+                <Button colorScheme="teal" variant="solid" marginRight="1rem">
+                  Sign In
+                </Button>
+              </a>
               <ToggleColorMode />
-              </>
-              )}
-            </Flex>
-          </GridItem>
-        <center>
-          <GridItem width="40rem"> 
-            <Box display={{ base: "none", md: "block" }}>
-              <Flex justify="space-around">
-                {location.pathname !== "/home" && (
-                  <Link to={"/home"}>
-                    <span className={style.underline}>HOME</span>{" "}
-                  </Link>
-                )}
+            </>
+          )}
+        </Flex>
+      </Box>
 
-                {location.pathname !== "/projects" && (
-                  <Link to={"/projects"}>
-                    {" "}
-                    <span className={style.underline}>Projects</span>{" "}
-                  </Link>
-                )}
-                {location.pathname !== "/create" && (
-                  <Link to={LogInStatus? "/create" : "/login"}>
-                    {" "}
-                    <span className={style.underline}>Create Project</span>{" "}
-                  </Link>
-                )}
-                {location.pathname !== "/home/aboutUs" && (
-                  <Link to={"/home/aboutUs"}>
-                    {" "}
-                    <span className={style.underline}>About Us</span>{" "}
-                  </Link>
-                )}
-              </Flex>
-            </Box>
-          </GridItem>
-          </center>
-            <HamburgerMenu />
-        </GridItem>
-      </Grid>
-    </div>
+
+      <HamburgerMenu />
+    </Flex>
+
+
+
+
+
+
+    // </div>
   );
 }
