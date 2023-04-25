@@ -188,12 +188,12 @@ const projectsSlicer = createSlice({
         state.postStatus = "Succeeded";
       })
       .addCase(getProjectById.fulfilled, (state, action) => {
-        state.projectId = action.payload;
+        state.projectIdPago = action.payload;
       })
       .addCase(getProject.fulfilled, (state, action) => {
-        state.AllProjects = [...action.payload];
-        state.ProjectsToDisplay = [...action.payload];
-        state.projectsFiltred = [...action.payload];
+        state.AllProjects = action.payload;
+        state.ProjectsToDisplay = action.payload;
+        state.projectsFiltred = action.payload;
       })
       .addCase(getProjectByName.fulfilled, (state, action) => {
         state.projectByName = action.payload;

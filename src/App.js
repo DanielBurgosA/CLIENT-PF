@@ -45,7 +45,7 @@ function App() {
       dispatch(getUser());
     }
     
-  });
+  },[]);
 
   return (
     <div className="App">
